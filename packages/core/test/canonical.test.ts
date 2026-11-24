@@ -92,6 +92,14 @@ describe('diffOutcomes', () => {
     expect(d).toEqual({ type: 'value', paths: [{ path: 'b[1]', original: 2, candidate: 3 }] });
   });
 
+  it('treats one dropped array element as one difference', () => {
+    const d = diffOutcomes(
+      { kind: 'ok', value: [{ type: 'Undefined' }, { type: 'Null' }, { type: 'Number' }] },
+      { kind: 'ok', value: [{ type: 'Undefined' }, { type: 'Number' }] },
+    );
+    expect(d).toEqual({ type: 'value', paths: [{ path: '[1]', original: { type: 'Null' }, candidate: null, candidateMissing: true }] });
+  });
+
   it('splits strings by character', () => {
     expect(charSplit('a/b/', 'a/b')).toEqual({ prefix: 'a/b', original: '/', candidate: '', suffix: '' });
   });

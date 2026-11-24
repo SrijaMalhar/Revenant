@@ -18,6 +18,9 @@ export type DiffPart =
         path: string;
         original: unknown;
         candidate: unknown;
+        /** true when this side has nothing at this path */
+        originalMissing?: boolean;
+        candidateMissing?: boolean;
         chars?: { prefix: string; original: string; candidate: string; suffix: string };
       }[];
     };
@@ -48,11 +51,10 @@ function walk(x: unknown, y: unknown, path: string, out: Extract<DiffPart, { typ
   if (out.length >= MAX_PATHS) return;
   if (JSON.stringify(x) === JSON.stringify(y)) return;
   if (Array.isArray(x) && Array.isArray(y)) {
-    const n = Math.max(x.length, y.length);
-    for (let i = 0; i < n; i++) {
-      if (i >= x.length || i >= y.length) {
-        out.push({ path: `${path}[${i}]`, original: i < x.length ? x[i] : '(missing)', candidate: i < y.length ? y[i] : '(missing)' });
-      } else walk(x[i], y[i], `${path}[${i}]`, out);
+    for (const [i, j] of alignArrays(x, y)) {
+      if (i !== null && j !== null) walk(x[i], y[j], `${path}[${i}]`, out);
+      else if (i !== null) out.push({ path: `${path}[${i}]`, original: x[i], candidate: null, candidateMissing: true });
+      else out.push({ path: `${path}[${j}]`, original: null, candidate: y[j!], originalMissing: true });
     }
     return;
   }
@@ -60,15 +62,55 @@ function walk(x: unknown, y: unknown, path: string, out: Extract<DiffPart, { typ
     const keys = [...new Set([...Object.keys(x), ...Object.keys(y)])].sort();
     for (const k of keys) {
       const p = path ? `${path}.${k}` : k;
-      if (!(k in x) || !(k in y)) {
-        out.push({ path: p, original: k in x ? x[k] : '(missing)', candidate: k in y ? y[k] : '(missing)' });
-      } else walk(x[k], y[k], p, out);
+      if (!(k in x)) out.push({ path: p, original: null, candidate: y[k], originalMissing: true });
+      else if (!(k in y)) out.push({ path: p, original: x[k], candidate: null, candidateMissing: true });
+      else walk(x[k], y[k], p, out);
     }
     return;
   }
   const entry: Extract<DiffPart, { type: 'value' }>['paths'][number] = { path: path || '(value)', original: x, candidate: y };
   if (typeof x === 'string' && typeof y === 'string') entry.chars = charSplit(x, y);
   out.push(entry);
+}
+
+/**
+ * Lines up two arrays so one inserted or dropped element reads as one
+ * difference, not as every later index changing. Equal elements are matched
+ * by longest common subsequence; unmatched ones in the same gap are paired
+ * in order and compared; the rest are reported as missing on one side.
+ */
+export function alignArrays(x: unknown[], y: unknown[]): [number | null, number | null][] {
+  const n = x.length;
+  const m = y.length;
+  if (n * m > 4000) return Array.from({ length: Math.max(n, m) }, (_, i) => [i < n ? i : null, i < m ? i : null]);
+  const xs = x.map((v) => JSON.stringify(v));
+  const ys = y.map((v) => JSON.stringify(v));
+  const dp = Array.from({ length: n + 1 }, () => new Array<number>(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i]![j] = xs[i] === ys[j] ? dp[i + 1]![j + 1]! + 1 : Math.max(dp[i + 1]![j]!, dp[i]![j + 1]!);
+  const out: [number | null, number | null][] = [];
+  let gapX: number[] = [];
+  let gapY: number[] = [];
+  const flush = () => {
+    const k = Math.min(gapX.length, gapY.length);
+    for (let t = 0; t < k; t++) out.push([gapX[t]!, gapY[t]!]);
+    for (const i of gapX.slice(k)) out.push([i, null]);
+    for (const j of gapY.slice(k)) out.push([null, j]);
+    gapX = [];
+    gapY = [];
+  };
+  let i = 0;
+  let j = 0;
+  while (i < n && j < m) {
+    if (xs[i] === ys[j]) {
+      flush();
+      out.push([i++, j++]);
+    } else if (dp[i + 1]![j]! >= dp[i]![j + 1]!) gapX.push(i++);
+    else gapY.push(j++);
+  }
+  while (i < n) gapX.push(i++);
+  while (j < m) gapY.push(j++);
+  flush();
+  return out;
 }
 
 /** canonical()'s special markers ({"$nan":1}, {"$date":…}) are leaves, not structures. */
