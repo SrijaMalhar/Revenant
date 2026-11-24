@@ -163,7 +163,7 @@ function parseTypes(t: Tokens): TypeNode[] {
 
 export function parseType(input: string): TypeNode[] {
   if (!input.length) throw new Error('No type specified.');
-  const tokens = input.match(tokenRegex) || [];
+  const tokens: string[] = input.match(tokenRegex) || [];
   if (tokens.includes('->')) {
     throw new Error("Function types are not supported. To validate that something is a function, you may use 'Function'.");
   }

@@ -1,0 +1,60 @@
+{
+  "name": "type-check",
+  "version": "0.4.0",
+  "integrity": "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==",
+  "license": "MIT",
+  "author": "George Zahariev",
+  "main": "lib/index.js",
+  "cases": [
+    "parseType",
+    "typeCheck",
+    "parsedTypeCheck",
+    "typeCheck customTypes",
+    "VERSION"
+  ],
+  "divergences": [],
+  "possessions": [
+    {
+      "id": "maybe-forgets-null",
+      "title": "Maybe T forgets Null and only allows Undefined",
+      "caught": true,
+      "caseName": "parseType",
+      "inputsToCatch": 4,
+      "shrinks": 5
+    },
+    {
+      "id": "subset-ignored",
+      "title": "... in fields is ignored, so extra keys fail",
+      "caught": true,
+      "caseName": "typeCheck",
+      "inputsToCatch": 24,
+      "shrinks": 4
+    },
+    {
+      "id": "int-accepts-floats",
+      "title": "Int accepts floats",
+      "caught": true,
+      "caseName": "typeCheck",
+      "inputsToCatch": 349,
+      "shrinks": 5
+    },
+    {
+      "id": "nan-is-a-number",
+      "title": "Number accepts NaN",
+      "caught": true,
+      "caseName": "typeCheck",
+      "inputsToCatch": 6626,
+      "shrinks": 2,
+      "note": "Survived 100,000 inputs at first: fc.double() made NaN too rarely. Fixed by giving NaN, Infinity and -0 their own entry in the value generator."
+    },
+    {
+      "id": "swallowed-ident-error",
+      "title": "a field key that isn't an identifier no longer throws",
+      "caught": true,
+      "caseName": "parseType",
+      "inputsToCatch": 1652,
+      "shrinks": 18,
+      "note": "Survived 100,000 inputs at first: random token soup never reached a field key that is not an identifier. Fixed by adding near-miss type strings (one token replaced, inserted or dropped)."
+    }
+  ]
+}

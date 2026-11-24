@@ -1,0 +1,9 @@
+{
+  "pkg": "type-check",
+  "version": "0.4.0",
+  "fastCheck": "4.11.0",
+  "seed": 42,
+  "n": 10000,
+  "sha256": "5bdb9ce05211ee2b358e055a94bed6541ea436888e1f231cb00ac06765d0c626",
+  "tz": "UTC"
+}

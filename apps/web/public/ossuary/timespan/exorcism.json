@@ -1,0 +1,44 @@
+{
+  "advisory": {
+    "id": "GHSA-f523-2f5j-gfcg",
+    "cve": "CVE-2017-16115",
+    "url": "https://github.com/advisories/GHSA-f523-2f5j-gfcg"
+  },
+  "input": "parseDate('NOW+' + n digits + 'a')",
+  "measuredAt": "2026-11-24",
+  "runtime": "Node 22.23.5",
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "method": "median of 3 to 9 runs after one warm-up run",
+  "points": [
+    {
+      "n": 1000,
+      "originalMs": 3.26,
+      "revivedMs": 0.043
+    },
+    {
+      "n": 2000,
+      "originalMs": 12.14,
+      "revivedMs": 0.062
+    },
+    {
+      "n": 5000,
+      "originalMs": 74.69,
+      "revivedMs": 0.02
+    },
+    {
+      "n": 10000,
+      "originalMs": 303.97,
+      "revivedMs": 0.037
+    },
+    {
+      "n": 20000,
+      "originalMs": 1234.81,
+      "revivedMs": 0.119
+    },
+    {
+      "n": 40000,
+      "originalMs": 4962.64,
+      "revivedMs": 0.113
+    }
+  ]
+}

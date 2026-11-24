@@ -1,0 +1,64 @@
+{
+  "name": "timespan",
+  "version": "2.3.0",
+  "integrity": "sha512-0Jq9+58T2wbOyLth0EU+AUb6JMGCLaTWIykJFa7hyAybjVH9gpVMTfUAwo5fWAvtFt2Tjh/Elg8JtgNpnMnM8g==",
+  "license": "MIT",
+  "author": "Michael Stum",
+  "main": "lib/time-span.js",
+  "cases": [
+    "fromMilliseconds",
+    "fromSeconds",
+    "fromMinutes",
+    "fromHours",
+    "fromDays",
+    "new TimeSpan",
+    "parse",
+    "parseDate",
+    "fromDates",
+    "test",
+    "instanceOf",
+    "clone",
+    "totalMilliseconds",
+    "totalSeconds",
+    "totalMinutes",
+    "totalHours",
+    "totalDays",
+    "equals",
+    "ops"
+  ],
+  "divergences": [],
+  "possessions": [
+    {
+      "id": "totaldays-rounds-up",
+      "title": "totalDays(true) rounds up instead of down",
+      "caught": true,
+      "caseName": "totalDays",
+      "inputsToCatch": 4,
+      "shrinks": 30
+    },
+    {
+      "id": "month-rollover-off-by-one",
+      "title": "a month rollover past December is off by one",
+      "caught": true,
+      "caseName": "parseDate",
+      "inputsToCatch": 39,
+      "shrinks": 43
+    },
+    {
+      "id": "parse-ignores-fraction",
+      "title": "parse ignores the .fff fraction",
+      "caught": true,
+      "caseName": "parse",
+      "inputsToCatch": 2,
+      "shrinks": 0
+    },
+    {
+      "id": "sign-ignored",
+      "title": "parseDate treats every modifier as +",
+      "caught": true,
+      "caseName": "parseDate",
+      "inputsToCatch": 1,
+      "shrinks": 22
+    }
+  ]
+}

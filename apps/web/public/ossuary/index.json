@@ -1,0 +1,20 @@
+[
+  {
+    "name": "path-browserify",
+    "version": "1.0.1",
+    "possessions": 5,
+    "replay": false
+  },
+  {
+    "name": "timespan",
+    "version": "2.3.0",
+    "possessions": 4,
+    "replay": false
+  },
+  {
+    "name": "type-check",
+    "version": "0.4.0",
+    "possessions": 5,
+    "replay": false
+  }
+]
