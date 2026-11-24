@@ -4,6 +4,7 @@
     "packages/core/src",
     "packages/core/test",
     "packages/mcp/src",
+    "packages/mcp/test",
     "scripts",
     "api",
     "ossuary/*/cases.ts",

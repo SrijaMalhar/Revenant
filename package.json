@@ -35,6 +35,7 @@
     "input-stats": "tsx scripts/input-stats.ts",
     "rules:check": "tsx scripts/check-rules.ts",
     "determinism": "tsx scripts/determinism.ts",
+    "self-scan": "tsx scripts/self-scan.ts",
     "build": "npm run build:ossuary && npm run build -w @revenant/web"
   },
   "devDependencies": {
