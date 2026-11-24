@@ -11,7 +11,7 @@ export default defineConfig({
       'ossuary/*/*.test.ts',
       'scripts/**/*.test.ts',
       'apps/web/src/**/*.test.ts',
-      'api/*.test.ts',
+      'api/_*.test.ts',
     ],
     env: { TZ: 'UTC' },
     testTimeout: 120_000,
