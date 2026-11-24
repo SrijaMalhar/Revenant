@@ -4,7 +4,7 @@ Everything in this kit goes into the root of your new repo, keeping the folders 
 
 ## Tonight (10 minutes, phone is fine)
 
-- [ ] Register for Kiroween 2026 on Devpost. Have your Kiro sign-in ready; the form may ask for a Kiro user ID or an AWS account ID.
+- [ ] Register on Devpost. Have your Kiro sign-in ready; the form may ask for a Kiro user ID or an AWS account ID.
 - [ ] Request the 4,000 free Kiro credits on the event's **Resources** tab. Closes Dec 1, 12:00 PM PT (Dec 2, 1:30 AM IST).
 
 ## Day 1 · Wed Nov 25 (laptop)
