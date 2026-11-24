@@ -1,0 +1,28 @@
+{
+  "name": "timespan",
+  "version": "2.3.0",
+  "description": "TimeSpan values and a liberal date parser. A zero-dependency reimplementation of timespan 2.3.0, with its ReDoS (CVE-2017-16115) removed.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "files": [
+    "lib",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "revenant": {
+    "revives": "timespan@2.3.0",
+    "integrity": "sha512-0Jq9+58T2wbOyLth0EU+AUb6JMGCLaTWIykJFa7hyAybjVH9gpVMTfUAwo5fWAvtFt2Tjh/Elg8JtgNpnMnM8g=="
+  }
+}
