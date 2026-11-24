@@ -1,7 +1,6 @@
 node_modules/
 dist/
+coverage/
 .env
 .env.*
 .DS_Store
-coverage/
-# Never ignore .kiro/ — the hackathon rules require it in the repo.
