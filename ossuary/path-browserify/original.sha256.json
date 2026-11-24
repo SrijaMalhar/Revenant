@@ -1,0 +1,21 @@
+{
+  ".github/FUNDING.yml": "6c205f1930c3910bb94a7ea67ed8738a72ed3db5d0ef39832d65585ee0bd3482",
+  ".travis.yml": "811875cafb5bb67a0bad1258809df9c6daef521b1ff899c686884456e68e823c",
+  "CHANGELOG.md": "19e8145610e9f27f7c7d95c39f1b0f674ea4dbeb0694be245494017d5a4a9b95",
+  "index.js": "f6d60f9e7cd83f65f947cda34ef846e82706c044d9a9fa7c5b69718b13b78e28",
+  "LICENSE": "a22b9d5763f574e5db347c30acc0b33eaf4846767c03d2e27d012e864e79a824",
+  "package.json": "8adb61e752398b45fbcf7bc35f254b74302622b100e49915a4905e74c97acb42",
+  "README.md": "326adf55ce92562b49dfa7a7a7421e777164ec8491f1caab977e65c262fb1ff7",
+  "security.md": "612dfd309edc618a1c6e5fd0657b9dc902f70252234e0b19f160805bc5ae9767",
+  "test/index.js": "223bbfe503d1379bf586c2fcccf90bbbfae695f6bcf671ac549591b027f38a9c",
+  "test/test-path-basename.js": "45768e41f96b2be5b9ae3d22f5834dfa1f31d419f4365430886ca8f0a31a6a52",
+  "test/test-path-dirname.js": "ac370524213d123f1927d7f7939b3dc83febcf1c9a2191adbf8f56363acca59b",
+  "test/test-path-extname.js": "47f66dd7bf44306d5e53240c753a024812f831c352b098482c469bf3c9c773e5",
+  "test/test-path-isabsolute.js": "7a90ca603200e1766c76a630840b4d46d3a06124e42fc734e40b9887c439fd1c",
+  "test/test-path-join.js": "4e8c1d01f4f158a701c278171f7446eaf0b5017a282fdfe2ea2575798a071a75",
+  "test/test-path-parse-format.js": "045d17ef499a9c0ad0ec98e2cb91c9753742133deedda79994f79e3822d6f5fc",
+  "test/test-path-relative.js": "418d722f2f98f7625c7facb3ecd41dbe503f2b28ec4b1ce931c6cfd1f212ecbc",
+  "test/test-path-resolve.js": "75c4a8d71f00ab033e28eb97e528490e10e497854d814bb815a6d4ca34d6a8c0",
+  "test/test-path-zero-length-strings.js": "5e7a8a0920337827ea6a30413b2782cb8c5b69c05bcd3ddc60d213c077f88a09",
+  "test/test-path.js": "b3e089092049e760912cb7a919cd05b024ce4c20e86c89aadc85ee5ef47b496f"
+}

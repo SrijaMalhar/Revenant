@@ -7,9 +7,9 @@
  * Nothing from the tarball is ever executed.
  */
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, rm, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { dirname, join, normalize, sep } from 'node:path';
+import { dirname, join, normalize, relative, sep } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import semver from 'semver';
 import { ossuaryDir, readManifest, writeManifest } from './lib/ossuary.ts';
@@ -110,6 +110,20 @@ async function vendorInto(name: string, version: string, dest: string): Promise<
   return doc;
 }
 
+/** sha256 of every vendored file, so CI can prove original/ was never edited. */
+export async function fileHashes(dir: string): Promise<Record<string, string>> {
+  const out: Record<string, string> = {};
+  const walk = async (d: string) => {
+    for (const e of (await readdir(d, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
+      const full = join(d, e.name);
+      if (e.isDirectory()) await walk(full);
+      else out[relative(dir, full).split(sep).join('/')] = createHash('sha256').update(await readFile(full)).digest('hex');
+    }
+  };
+  await walk(dir);
+  return out;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const spec = args.find((a) => !a.startsWith('--'));
@@ -147,11 +161,14 @@ async function main() {
   manifest.license = doc.license ?? 'UNKNOWN';
   manifest.author = authorString(doc.author);
   await writeManifest(name, manifest);
+  await writeFile(join(root, 'original.sha256.json'), JSON.stringify(await fileHashes(originalDir), null, 2) + '\n');
   const pkgJson = JSON.parse(await readFile(join(originalDir, 'package.json'), 'utf8'));
   console.log(`main: ${pkgJson.main ?? 'index.js'}`);
 }
 
-main().catch((e) => {
-  console.error(e instanceof Error ? e.message : e);
-  process.exit(1);
-});
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((e) => {
+    console.error(e instanceof Error ? e.message : e);
+    process.exit(1);
+  });
+}

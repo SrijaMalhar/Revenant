@@ -1,0 +1,18 @@
+{
+  "lib/check.js": "3420aeaef410af8aa43bc84f4cfb44691cccb4b9cfc69b7f4be0037396a00f68",
+  "lib/index.js": "82e58c7bac292f0d47de84e68b6bbc42c9cc8ba04cfaa47e6de9be6cd18a359a",
+  "lib/parse-type.js": "1d43f7cafa18b3c3a425973f74c0e6c536f4b97fa6fd9e909941d150d3a603d7",
+  "LICENSE": "b9eb082c39fe245e38793699074c394c43a722c51fce031c3c165cb92a31035c",
+  "node_modules/prelude-ls/CHANGELOG.md": "89222921f59a9ada903d6d9a61b47c49117e80643cc0dd99bea00b4345089ea7",
+  "node_modules/prelude-ls/lib/Func.js": "0243e2303a7615f008eb7482d66f47d31158480c77b993d5e8a0b0a24241bcb0",
+  "node_modules/prelude-ls/lib/index.js": "3a62c2d3956f5441b9a9675c85e6f57efd5473048323b9a6a653e7c8a7fe1bb9",
+  "node_modules/prelude-ls/lib/List.js": "a38ae5bbae6a50732f12d574b9251a20ce61d1a5bb7ea793e33d1cdb8ab4d260",
+  "node_modules/prelude-ls/lib/Num.js": "4694568f49a6b57eafa5fe57d6e4e1ae562251cfdd1022f2f5cd028eadeb3430",
+  "node_modules/prelude-ls/lib/Obj.js": "31395047a5e213032ff2064bcba87ad1e7fdd04321a716b1c42233193dd5ac16",
+  "node_modules/prelude-ls/lib/Str.js": "8da922782784d9e73a02a15ddd2464adf8081ab8c0fcc9a1aca4b113c44ad802",
+  "node_modules/prelude-ls/LICENSE": "b9eb082c39fe245e38793699074c394c43a722c51fce031c3c165cb92a31035c",
+  "node_modules/prelude-ls/package.json": "d943e3b5a7189692268bf64e3a068249696985a9c8728397fc8786b59a198b53",
+  "node_modules/prelude-ls/README.md": "22e826aa1a63821df6e369012401a79ee5b0952cc0320fcede801d6fdf50ea67",
+  "package.json": "f52058410cf8e57ed28dd462eece693ba490c619c70c17caef8af60b84dc4ed0",
+  "README.md": "5e5efe282abe9330ce63c054ce28d3c6711fdabe19d8b595b288300a16b45ee2"
+}

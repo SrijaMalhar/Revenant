@@ -1,0 +1,15 @@
+{
+  ".npmignore": "40d9d3d5737327346321b8d0f0b0ec189cdd5fdbf20e3a0434b5ca3ddc0f657a",
+  "browser/TimeSpan-1.2.js": "00fe4d337376a5a41ae7d4e1cf9efbebc39b39719f45722681a764ed0034e3c1",
+  "browser/TimeSpan-1.2.min.js": "eefda662b770988437024d398ba102d2d1fcc00daadc650857a2d27835697c25",
+  "CHANGELOG.md": "9fe4e56a1f0d5624c4355b5dc6f35af9c82ece3e0ade160e564f3837d675967d",
+  "docs/docco.css": "a260d1119dfcfe604b1cce69626d9fd50882ad3dc9fdbb618f2777b9a7a52e97",
+  "docs/time-span.html": "7a73c86f197b10af33a5cdddec360542064b7e7efa36835c610d0c73505f5335",
+  "lib/time-span.js": "8c187ffbbaf65b097177a6d242f6e8deb93c97545fc8a477a0fa4f04bbeb0572",
+  "LICENSE": "d1757146db2d237220f5833f9ec22311fc08fe589a8471553090ce5283ab1d70",
+  "package.json": "8a832017cfc5720a44b8917add9697ec6b2ab0db0eccc572c77fcdf2f17e4573",
+  "README.md": "523329e97b9f8b746cac68799860d3b82ef4fb663938092845165382e239f9f4",
+  "test/date-parser-test.js": "65d191dc1239efaeff3571767ba0c84404c2ab307da057c91d961d0ce3285a94",
+  "test/helpers.js": "0d30a0d79a9a7558ea97a1e9f1d2578fc222e30da6979159da5234a505b42270",
+  "test/time-span-test.js": "37fbdb5cb78d2fada8c924b070f350d747d4c72b0fd4302a9e14120888be2277"
+}
