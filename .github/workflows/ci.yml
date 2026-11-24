@@ -1,0 +1,70 @@
+name: ci
+
+on:
+  push:
+    branches: [main, reference]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  TZ: UTC
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+
+      - name: Unit, property and exorcism tests
+        run: npm test
+        env:
+          CI: 'true'
+
+      - name: Soul Match, 100,000 inputs, seed 42 and one random seed
+        run: |
+          SEED=$((RANDOM * 32768 + RANDOM))
+          echo "random seed: $SEED"
+          for pkg in path-browserify timespan type-check; do
+            npm run --silent soul -- "$pkg" --seed 42
+            npm run --silent soul -- "$pkg" --seed "$SEED"
+          done
+
+      - name: Soulprints still match
+        run: npm run soulprint:check
+
+      - name: Same seed, same bytes, twice
+        run: npm run determinism
+
+      - name: Committed Ossuary bundles are up to date
+        run: |
+          npm run build:ossuary
+          git diff --exit-code -- apps/web/public/ossuary ossuary
+
+      - name: Rites (no deps, no install scripts, license kept, originals untouched)
+        run: npm run rules:check
+
+      - name: Static ReDoS gate
+        run: npm run redos
+
+      - name: Every planted bug is caught at 100,000 inputs
+        run: npm run possessions -- --strict
+
+      - name: Soul coverage stays above the measured floor
+        # First measured 97.54% (type-check) to 99.39% (timespan) of branches.
+        run: npm run coverage -- --min-branches 95
+
+      - name: Build the web app
+        run: npm run build
+
+      - name: Self-scan Revenant's own dependency tree
+        # Record a baseline first with: npm run self-scan -- --write-baseline
+        continue-on-error: true
+        run: npm run self-scan
