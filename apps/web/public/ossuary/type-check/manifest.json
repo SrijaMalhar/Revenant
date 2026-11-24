@@ -20,7 +20,8 @@
       "caught": true,
       "caseName": "parseType",
       "inputsToCatch": 4,
-      "shrinks": 5
+      "shrinks": 5,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "subset-ignored",
@@ -28,7 +29,8 @@
       "caught": true,
       "caseName": "typeCheck",
       "inputsToCatch": 24,
-      "shrinks": 4
+      "shrinks": 4,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "int-accepts-floats",
@@ -36,7 +38,8 @@
       "caught": true,
       "caseName": "typeCheck",
       "inputsToCatch": 349,
-      "shrinks": 5
+      "shrinks": 5,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "nan-is-a-number",
@@ -45,7 +48,8 @@
       "caseName": "typeCheck",
       "inputsToCatch": 6626,
       "shrinks": 2,
-      "note": "Survived 100,000 inputs at first: fc.double() made NaN too rarely. Fixed by giving NaN, Infinity and -0 their own entry in the value generator."
+      "note": "Survived 100,000 inputs at first: fc.double() made NaN too rarely. Fixed by giving NaN, Infinity and -0 their own entry in the value generator.",
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "swallowed-ident-error",
@@ -54,7 +58,8 @@
       "caseName": "parseType",
       "inputsToCatch": 1652,
       "shrinks": 18,
-      "note": "Survived 100,000 inputs at first: random token soup never reached a field key that is not an identifier. Fixed by adding near-miss type strings (one token replaced, inserted or dropped)."
+      "note": "Survived 100,000 inputs at first: random token soup never reached a field key that is not an identifier. Fixed by adding near-miss type strings (one token replaced, inserted or dropped).",
+      "measuredAt": "2026-11-24"
     }
   ],
   "coverage": {

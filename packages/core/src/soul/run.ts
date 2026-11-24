@@ -97,7 +97,7 @@ export function runSoulMatch(opts: RunSoulMatchOptions): SoulMatchRun {
           done,
           perCase,
           status: 'error',
-          error: details.errorInstance instanceof Error ? details.errorInstance.message : String(details.errorInstance),
+          error: String((details.errorInstance as { message?: string } | null)?.message ?? details.errorInstance),
           millis: Math.round(clock() - started),
         };
       }

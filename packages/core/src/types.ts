@@ -128,7 +128,7 @@ export interface OssuaryManifest {
   divergences: { id: string; description: string; test: string }[];
   replay?: { draft: string; recordedAt: string; note: string };
   build?: { define?: Record<string, string> };
-  possessions?: { id: string; title: string; caught?: boolean; inputsToCatch?: number | null; note?: string }[];
+  possessions?: { id: string; title: string; caught?: boolean; caseName?: string | null; inputsToCatch?: number | null; shrinks?: number | null; note?: string; measuredAt?: string }[];
   coverage?: {
     lines: number;
     branches: number;

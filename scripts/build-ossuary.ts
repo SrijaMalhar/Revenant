@@ -75,7 +75,7 @@ async function defineOptions(pkg: string, define: Record<string, string>): Promi
 
 async function bundleTo(outfile: string, opts: BuildOptions): Promise<number> {
   const result = await build({ ...common, ...opts });
-  const text = result.outputFiles[0]!.text;
+  const text = result.outputFiles![0]!.text;
   await writeFile(outfile, text);
   return text.length;
 }
@@ -117,10 +117,10 @@ async function buildRevivedLib(pkg: string): Promise<void> {
   await mkdir(lib, { recursive: true });
   const base: BuildOptions = { entryPoints: [entry], bundle: true, platform: 'neutral', target: 'es2020', write: false, logLevel: 'silent', legalComments: 'inline' };
   const esm = await build({ ...base, format: 'esm' });
-  await writeFile(join(lib, 'index.mjs'), esm.outputFiles[0]!.text);
+  await writeFile(join(lib, 'index.mjs'), esm.outputFiles![0]!.text);
   // require() gets exactly the original's module.exports shape, without an extra "default" key.
   const cjs = await build({ ...base, format: 'cjs', footer: { js: 'module.exports = module.exports.default;' } });
-  await writeFile(join(lib, 'index.cjs'), cjs.outputFiles[0]!.text);
+  await writeFile(join(lib, 'index.cjs'), cjs.outputFiles![0]!.text);
 
   const host = ts.createCompilerHost({});
   const written: Record<string, string> = {};

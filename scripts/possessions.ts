@@ -21,7 +21,7 @@ async function main() {
   const pkgs = named.length ? named : await listOssuary();
   let survivors = 0;
   for (const pkg of pkgs) {
-    const results = [];
+    const results: Record<string, unknown>[] = [];
     for (const p of await readPossessions(pkg)) {
       const run = await soul({ pkg, runs, seed: 42, target: `possessed:${p.id}`, json: false, stable: true });
       const d = run.divergence;
@@ -36,6 +36,7 @@ async function main() {
         inputsToCatch,
         shrinks: d?.shrinks ?? null,
         ...(p.note ? { note: p.note } : {}),
+        measuredAt: new Date().toISOString().slice(0, 10),
       });
       console.log(`${pkg} ${p.id}: ${caught ? `caught in ${d!.caseName} after ${inputsToCatch} inputs, ${d!.shrinks} shrinks` : 'SURVIVED'}`);
     }

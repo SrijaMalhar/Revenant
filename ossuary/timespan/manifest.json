@@ -34,7 +34,8 @@
       "caught": true,
       "caseName": "totalDays",
       "inputsToCatch": 4,
-      "shrinks": 30
+      "shrinks": 30,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "month-rollover-off-by-one",
@@ -42,7 +43,8 @@
       "caught": true,
       "caseName": "parseDate",
       "inputsToCatch": 39,
-      "shrinks": 43
+      "shrinks": 43,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "parse-ignores-fraction",
@@ -50,7 +52,8 @@
       "caught": true,
       "caseName": "parse",
       "inputsToCatch": 2,
-      "shrinks": 0
+      "shrinks": 0,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "sign-ignored",
@@ -58,7 +61,8 @@
       "caught": true,
       "caseName": "parseDate",
       "inputsToCatch": 1,
-      "shrinks": 22
+      "shrinks": 22,
+      "measuredAt": "2026-11-24"
     }
   ],
   "coverage": {

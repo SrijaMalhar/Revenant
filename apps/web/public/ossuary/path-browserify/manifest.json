@@ -36,7 +36,8 @@
       "caught": true,
       "caseName": "normalize",
       "inputsToCatch": 7,
-      "shrinks": 0
+      "shrinks": 0,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "dotdot-above-root",
@@ -44,7 +45,8 @@
       "caught": true,
       "caseName": "normalize",
       "inputsToCatch": 38,
-      "shrinks": 1
+      "shrinks": 1,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "extname-dotfiles",
@@ -52,7 +54,8 @@
       "caught": true,
       "caseName": "extname",
       "inputsToCatch": 5,
-      "shrinks": 5
+      "shrinks": 5,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "swallowed-ext-error",
@@ -60,7 +63,8 @@
       "caught": true,
       "caseName": "basename",
       "inputsToCatch": 17,
-      "shrinks": 3
+      "shrinks": 3,
+      "measuredAt": "2026-11-24"
     },
     {
       "id": "relative-ignores-case",
@@ -69,7 +73,8 @@
       "caseName": "relative",
       "inputsToCatch": 11,
       "shrinks": 5,
-      "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs."
+      "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs.",
+      "measuredAt": "2026-11-24"
     }
   ],
   "coverage": {
