@@ -55,16 +55,39 @@ export function typeString(identifiers: string[] = [...BUILT_INS, 'Foo']): fc.Ar
   return types as fc.Arbitrary<string>;
 }
 
+const JUNK = ['[', ']', '{', '}', '(', ')', ',', ':', '|', '...', '*', 'Maybe', 'Number', 'a', '::', '->'];
+const tokenRegex = /\.\.\.|::|->|[$\w]+|\S/g;
+
 /** Token soup: most of these fail to parse, and both sides must then throw. */
-export const badTypeString = fc
-  .array(fc.constantFrom('[', ']', '{', '}', '(', ')', ',', ':', '|', '...', '*', 'Maybe', 'Number', 'a', '::', '->'), {
-    maxLength: 8,
-  })
+const tokenSoup = fc
+  .array(fc.constantFrom(...JUNK), { maxLength: 8 })
   .chain((tokens) => fc.array(space, { minLength: tokens.length, maxLength: tokens.length }).map((sps) => tokens.map((t, i) => t + sps[i]).join('')));
 
+/**
+ * Near misses: a valid type string with one token replaced, inserted or
+ * dropped. Random soup almost never reaches deep parser branches, such as a
+ * field key that isn't an identifier; a planted bug there survived 100,000
+ * inputs until these were added.
+ */
+const nearMiss = fc
+  .tuple(typeString(), fc.nat(), fc.constantFrom(...JUNK), fc.constantFrom('replace', 'insert', 'drop'))
+  .map(([t, at, junk, how]) => {
+    const tokens = t.match(tokenRegex) ?? [];
+    const i = tokens.length ? at % tokens.length : 0;
+    if (how === 'replace') tokens[i] = junk;
+    else if (how === 'insert') tokens.splice(i, 0, junk);
+    else tokens.splice(i, 1);
+    return tokens.join(' ');
+  });
+
+export const badTypeString = fc.oneof(tokenSoup, nearMiss);
+
+// NaN, Infinity and -0 get their own entry: fc.double() alone made NaN so
+// rare that a planted "Number accepts NaN" bug survived 100,000 inputs.
 const leaf = fc.oneof(
   fc.integer(),
   fc.double(),
+  fc.constantFrom(NaN, Infinity, -Infinity, -0),
   fc.string({ maxLength: 5 }),
   fc.boolean(),
   fc.constant(null),

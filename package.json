@@ -25,6 +25,7 @@
     "soulprint:check": "tsx scripts/soulprint.ts --check",
     "fixtures": "tsx scripts/record-fixtures.ts",
     "exorcism": "tsx scripts/exorcism.ts",
+    "possessions": "tsx scripts/possessions.ts",
     "rules:check": "tsx scripts/check-rules.ts",
     "build": "npm run build:ossuary && npm run build -w @revenant/web"
   },

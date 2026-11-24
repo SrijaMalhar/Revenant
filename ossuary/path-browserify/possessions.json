@@ -1,0 +1,33 @@
+[
+  {
+    "id": "normalize-trailing-slash",
+    "title": "normalize drops the trailing slash on one-character results",
+    "find": "if (out.length > 0 && trailingSeparator) out += '/';",
+    "replace": "if (out.length > 1 && trailingSeparator) out += '/';"
+  },
+  {
+    "id": "dotdot-above-root",
+    "title": "normalize lets .. climb above the root",
+    "find": "let out = normalizeSegments(path, !absolute);",
+    "replace": "let out = normalizeSegments(path, true);"
+  },
+  {
+    "id": "extname-dotfiles",
+    "title": "extname treats dotfiles like .x as an extension",
+    "find": "preDotState === 0 || // a non-dot character right before the dot",
+    "replace": "// (planted) dotfiles no longer excluded"
+  },
+  {
+    "id": "swallowed-ext-error",
+    "title": "basename swallows the TypeError for a non-string ext",
+    "find": "if (ext !== undefined && typeof ext !== 'string') throw new TypeError('\"ext\" argument must be a string');",
+    "replace": "if (ext !== undefined && typeof ext !== 'string') ext = undefined;"
+  },
+  {
+    "id": "relative-ignores-case",
+    "title": "relative compares paths case-insensitively",
+    "find": "  if (from === to) return '';\n  from = resolve(from);",
+    "replace": "  if (from.toLowerCase() === to.toLowerCase()) return '';\n  from = resolve(from);",
+    "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs."
+  }
+]

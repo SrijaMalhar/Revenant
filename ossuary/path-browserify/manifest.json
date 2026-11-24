@@ -28,5 +28,48 @@
     "define": {
       "process.cwd": "() => \"/\""
     }
-  }
+  },
+  "possessions": [
+    {
+      "id": "normalize-trailing-slash",
+      "title": "normalize drops the trailing slash on one-character results",
+      "caught": true,
+      "caseName": "normalize",
+      "inputsToCatch": 7,
+      "shrinks": 0
+    },
+    {
+      "id": "dotdot-above-root",
+      "title": "normalize lets .. climb above the root",
+      "caught": true,
+      "caseName": "normalize",
+      "inputsToCatch": 38,
+      "shrinks": 1
+    },
+    {
+      "id": "extname-dotfiles",
+      "title": "extname treats dotfiles like .x as an extension",
+      "caught": true,
+      "caseName": "extname",
+      "inputsToCatch": 5,
+      "shrinks": 5
+    },
+    {
+      "id": "swallowed-ext-error",
+      "title": "basename swallows the TypeError for a non-string ext",
+      "caught": true,
+      "caseName": "basename",
+      "inputsToCatch": 17,
+      "shrinks": 3
+    },
+    {
+      "id": "relative-ignores-case",
+      "title": "relative compares paths case-insensitively",
+      "caught": true,
+      "caseName": "relative",
+      "inputsToCatch": 11,
+      "shrinks": 5,
+      "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs."
+    }
+  ]
 }

@@ -4,7 +4,9 @@ import type { Case } from '@revenant/core/types';
 // What Soul Match calls on path-browserify, and with which inputs.
 // process.cwd() is defined as () => "/" in both builds.
 
-const segment = fc.constantFrom('a', 'b', 'c', '.', '..', '', 'a.b', '.x', 'x.', '~', 'a b');
+// "A" is there so case-sensitivity bugs show up: a planted bug that compared
+// paths case-insensitively survived 100,000 inputs before it was added.
+const segment = fc.constantFrom('a', 'b', 'c', 'A', '.', '..', '', 'a.b', '.x', 'x.', '~', 'a b');
 
 /** 0 to 8 segments joined by "/", with an optional leading and trailing slash. Empty segments give "//". */
 export const path = fc
@@ -35,6 +37,30 @@ export const pathObject: fc.Arbitrary<unknown> = fc.oneof(
 );
 
 const args = fc.array(maybePath, { maxLength: 4 });
+
+/**
+ * Pairs for relative(): half independent, half related (the same path with a
+ * change), so "from is a base of to", trailing-slash and case branches get
+ * reached. Independent pairs almost never differ by case alone, which let a
+ * planted case-insensitive compare survive.
+ */
+const relatedPair: fc.Arbitrary<[unknown, unknown]> = fc
+  .tuple(path, fc.constantFrom('upper', 'append', 'parent', 'slash', 'same-ish'), segment)
+  .map(([p, how, seg]): [unknown, unknown] => {
+    switch (how) {
+      case 'upper':
+        return [p, p.replace(/a/g, 'A')];
+      case 'append':
+        return [p, `${p}/${seg}`];
+      case 'parent':
+        return [`${p}/${seg}`, p];
+      case 'slash':
+        return [p, `${p}/`];
+      default:
+        return [p, p.replace(/\/\//g, '/')];
+    }
+  });
+const pair = fc.oneof(fc.tuple(maybePath, maybePath), relatedPair);
 const none = fc.constant(null);
 
 /** Typed text from the Ouija board: a JSON array for several arguments, otherwise one path string. */
@@ -62,7 +88,7 @@ const cases: Case<any>[] = [
   { name: 'normalize', arbitrary: maybePath, call: (m, p) => m.normalize(p), parse: oneArg, examples: pathChips },
   { name: 'isAbsolute', arbitrary: maybePath, call: (m, p) => m.isAbsolute(p), parse: oneArg, examples: pathChips },
   { name: 'join', arbitrary: args, call: (m, a: unknown[]) => m.join(...a), parse: manyArgs, examples: ['[]', '["", ""]', '["/a", "../..", "b/"]'] },
-  { name: 'relative', arbitrary: fc.tuple(maybePath, maybePath), call: (m, [f, t]) => m.relative(f, t), parse: pairArgs, examples: ['["/a/b", "/a"]', '["/", "/a"]', '["a", "a/"]'] },
+  { name: 'relative', arbitrary: pair, call: (m, [f, t]) => m.relative(f, t), parse: pairArgs, examples: ['["/a/b", "/a"]', '["/", "/a"]', '["a", "a/"]'] },
   { name: 'dirname', arbitrary: maybePath, call: (m, p) => m.dirname(p), parse: oneArg, examples: pathChips },
   { name: 'basename', arbitrary: fc.tuple(maybePath, ext), call: (m, [p, e]) => m.basename(p, e), parse: pairArgs, examples: ['["a.b", ".b"]', '["/x/", "x"]', '[".b", ".b"]'] },
   { name: 'extname', arbitrary: maybePath, call: (m, p) => m.extname(p), parse: oneArg, examples: pathChips },

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "totaldays-rounds-up",
+    "title": "totalDays(true) rounds up instead of down",
+    "find": "let result = this.msecs / msecPerDay;\n    if (roundDown === true) result = Math.floor(result);",
+    "replace": "let result = this.msecs / msecPerDay;\n    if (roundDown === true) result = Math.ceil(result);"
+  },
+  {
+    "id": "month-rollover-off-by-one",
+    "title": "a month rollover past December is off by one",
+    "find": "c.months = ((c.months + 1) % 12) - 1;",
+    "replace": "c.months = (c.months + 1) % 12;"
+  },
+  {
+    "id": "parse-ignores-fraction",
+    "title": "parse ignores the .fff fraction",
+    "find": "const fractionMs = (value: string | undefined) => (value ? parseFloat('0' + value) * 1000 : 0);",
+    "replace": "const fractionMs = (_value: string | undefined) => 0;"
+  },
+  {
+    "id": "sign-ignored",
+    "title": "parseDate treats every modifier as +",
+    "find": "const sign = signChar === '+' ? 1 : -1;",
+    "replace": "const sign = 1;"
+  }
+]
