@@ -1,0 +1,28 @@
+{
+  "name": "type-check",
+  "version": "0.4.0",
+  "description": "Runtime type checks with a Haskell-like type syntax. A zero-dependency reimplementation of type-check 0.4.0, with prelude-ls's helpers inlined.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "files": [
+    "lib",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "revenant": {
+    "revives": "type-check@0.4.0",
+    "integrity": "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew=="
+  }
+}
