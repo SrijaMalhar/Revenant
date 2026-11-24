@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "packages/core/src",
+    "packages/core/test",
+    "packages/mcp/src",
+    "scripts",
+    "api",
+    "ossuary/*/cases.ts",
+    "ossuary/*/*.test.ts",
+    "ossuary/*/revived/src"
+  ]
+}

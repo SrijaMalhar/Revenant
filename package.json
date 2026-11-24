@@ -1,0 +1,39 @@
+{
+  "name": "revenant",
+  "private": true,
+  "type": "module",
+  "description": "Finds abandoned npm packages in a dependency tree, rebuilds the worst ones as zero-dependency TypeScript, and checks each rebuild against the original on 100,000 generated inputs.",
+  "license": "MIT",
+  "author": "Srija Malhar",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/mcp",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @revenant/web",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit && npm run typecheck -w @revenant/web",
+    "vendor": "tsx scripts/vendor-original.ts",
+    "build:ossuary": "tsx scripts/build-ossuary.ts",
+    "soul": "tsx scripts/soul.ts",
+    "soulprint": "tsx scripts/soulprint.ts",
+    "soulprint:check": "tsx scripts/soulprint.ts --check",
+    "fixtures": "tsx scripts/record-fixtures.ts",
+    "rules:check": "tsx scripts/check-rules.ts",
+    "build": "npm run build:ossuary && npm run build -w @revenant/web"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/semver": "7.8.0",
+    "esbuild": "0.28.2",
+    "fast-check": "4.11.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.1"
+  }
+}
