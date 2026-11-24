@@ -94,3 +94,27 @@ function ctorName(obj: object): string {
 export function canonicalString(value: unknown): string {
   return JSON.stringify(canonical(value));
 }
+
+/**
+ * Inverse of canonical() for the markers that stand for plain values
+ * ($u, $nan, $neg0, $inf, $big, $date and escaped keys). Used to turn a stored
+ * counterexample back into the exact input that failed. Class names ($c),
+ * functions and cycles can't be rebuilt and are dropped.
+ */
+export function decanonical(v: Canonical): unknown {
+  if (Array.isArray(v)) return v.map(decanonical);
+  if (v === null || typeof v !== 'object') return v;
+  if ('$u' in v) return undefined;
+  if ('$nan' in v) return NaN;
+  if ('$neg0' in v) return -0;
+  if ('$inf' in v) return (v.$inf as number) > 0 ? Infinity : -Infinity;
+  if ('$big' in v) return BigInt(v.$big as string);
+  if ('$date' in v) return new Date(v.$date === 'invalid' ? NaN : (v.$date as number));
+  if ('$re' in v) return new RegExp(v.$re as string, (v.flags as string) ?? '');
+  const out: Record<string, unknown> = {};
+  for (const [k, val] of Object.entries(v)) {
+    if (k === '$c' || k === '$fn' || k === '$cycle') continue;
+    out[k.startsWith('$$') ? k.slice(1) : k] = decanonical(val);
+  }
+  return out;
+}

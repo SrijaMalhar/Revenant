@@ -10,6 +10,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./soul": "./src/soul/index.ts",
+    "./soul/loose": "./src/soul/loose.ts",
+    "./node": "./src/node/ossuary.ts",
     "./graveyard": "./src/graveyard/index.ts",
     "./zombie": "./src/zombie/index.ts",
     "./types": "./src/types.ts"
