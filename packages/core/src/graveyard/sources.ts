@@ -79,8 +79,19 @@ export interface NpmVersionDoc {
   deprecated?: string;
 }
 
-export function getNpmVersion(up: Upstream, name: string, version: string): Promise<NpmVersionDoc> {
-  return up.json<NpmVersionDoc>('npm', `/${npmName(name)}/${encodeURIComponent(version)}`);
+export interface NpmPackument {
+  /** the accounts that can publish today */
+  maintainers?: unknown[];
+  versions?: Record<string, NpmVersionDoc>;
+}
+
+/**
+ * The package document. Its top-level maintainers are the accounts that can
+ * publish a new version now; a version document only lists who could when
+ * that version came out (path-browserify 1.0.1's lists 40, today it's 1).
+ */
+export function getNpmPackument(up: Upstream, name: string): Promise<NpmPackument> {
+  return up.json<NpmPackument>('npm', `/${npmName(name)}`);
 }
 
 /** preinstall, install or postinstall, or a binding.gyp that npm would build. */

@@ -103,14 +103,17 @@ export function responsesFor(world: World): Responses {
         ...(info.deprecated ? { deprecatedReason: info.deprecated } : {}),
         advisoryKeys: (info.advisories ?? []).map((id) => ({ id })),
       });
-      ok(upstreamUrl('npm', `/${nn}/${encodeURIComponent(v)}`), {
-        name,
-        version: v,
-        ...(info.scripts ? { scripts: info.scripts } : {}),
-        ...(info.gypfile ? { gypfile: true } : {}),
-        maintainers: Array.from({ length: p.maintainers ?? 1 }, (_, i) => ({ name: `m${i}` })),
-      });
     }
+    ok(upstreamUrl('npm', `/${nn}`), {
+      name,
+      maintainers: Array.from({ length: p.maintainers ?? 1 }, (_, i) => ({ name: `m${i}` })),
+      versions: Object.fromEntries(
+        Object.entries(p.versions).map(([v, info]) => [
+          v,
+          { name, version: v, ...(info.scripts ? { scripts: info.scripts } : {}), ...(info.gypfile ? { gypfile: true } : {}) },
+        ]),
+      ),
+    });
   }
   // Downloads: one URL per name and per sorted batch the scanner might ask for
   // is impossible to enumerate up front, so the fetch below answers batches.

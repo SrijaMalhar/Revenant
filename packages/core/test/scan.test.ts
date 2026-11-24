@@ -135,7 +135,7 @@ describe('scan on a linter-shaped tree', () => {
   });
 
   it('keeps going when one package fails, and marks it incomplete', async () => {
-    const url = upstreamUrl('npm', '/natural-compare/1.4.0');
+    const url = upstreamUrl('npm', '/natural-compare');
     const world = { ...linterWorld, failures: { [url]: 500 } };
     const report = await scan({ kind: 'github', owner: 'demo', repo: 'app' }, deps(world));
     const nc = report.nodes.find((n) => n.name === 'natural-compare')!;

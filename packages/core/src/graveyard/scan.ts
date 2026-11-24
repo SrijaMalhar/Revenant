@@ -3,7 +3,7 @@ import { lookupReplacement } from '../e18e/lookup.ts';
 import { parseDepSpec, resolveRange } from './resolve.ts';
 import {
   getGraph,
-  getNpmVersion,
+  getNpmPackument,
   getPackage,
   getVersion,
   getWeeklyDownloads,
@@ -285,7 +285,7 @@ export async function scan(input: ScanInput, deps: ScanDeps): Promise<GraveyardR
           node.incomplete = true;
           return null;
         }),
-        getNpmVersion(up, node.name, node.version).catch((e) => {
+        getNpmPackument(up, node.name).catch((e) => {
           errors.push({ at, message: `couldn't read the npm registry: ${message(e)}` });
           node.incomplete = true;
           return null;
@@ -297,10 +297,16 @@ export async function scan(input: ScanInput, deps: ScanDeps): Promise<GraveyardR
         if (ver.isDeprecated) node.vitals.deprecated = ver.deprecatedReason || 'deprecated';
       }
       if (doc) {
-        node.vitals.installScripts = hasInstallScripts(doc);
+        const installed = doc.versions?.[node.version];
+        if (installed) {
+          node.vitals.installScripts = hasInstallScripts(installed);
+          if (!node.vitals.deprecated && typeof installed.deprecated === 'string' && installed.deprecated) node.vitals.deprecated = installed.deprecated;
+        } else {
+          errors.push({ at, message: 'the npm registry has no document for this version' });
+          node.incomplete = true;
+        }
         // Counts only, never names or emails.
         node.vitals.maintainers = Array.isArray(doc.maintainers) ? doc.maintainers.length : null;
-        if (!node.vitals.deprecated && typeof doc.deprecated === 'string' && doc.deprecated) node.vitals.deprecated = doc.deprecated;
       }
       node.vitals.weeklyDownloads = dl.get(node.name) ?? null;
       if (node.vitals.weeklyDownloads === null) node.incomplete = true;
