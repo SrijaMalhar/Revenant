@@ -1,0 +1,9 @@
+{
+  "pkg": "timespan",
+  "version": "2.3.0",
+  "fastCheck": "4.11.0",
+  "seed": 42,
+  "n": 10000,
+  "sha256": "1364f8dda95e1d0d9bb276443d831f640d8958384f93206e7134bd4665d01828",
+  "tz": "UTC"
+}

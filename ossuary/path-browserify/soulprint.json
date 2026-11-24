@@ -1,0 +1,9 @@
+{
+  "pkg": "path-browserify",
+  "version": "1.0.1",
+  "fastCheck": "4.11.0",
+  "seed": 42,
+  "n": 10000,
+  "sha256": "6ff67d3a3dfbfaf993c199ea7515d1e1a04951c3b15343b4fd38620040f0070f",
+  "tz": "UTC"
+}
