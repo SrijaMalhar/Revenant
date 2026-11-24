@@ -1,0 +1,9 @@
+{
+  "name": "path-browserify",
+  "version": "1.0.1",
+  "integrity": "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==",
+  "license": "MIT",
+  "author": "James Halliday",
+  "cases": [],
+  "divergences": []
+}

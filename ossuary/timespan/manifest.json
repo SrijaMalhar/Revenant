@@ -1,0 +1,9 @@
+{
+  "name": "timespan",
+  "version": "2.3.0",
+  "integrity": "sha512-0Jq9+58T2wbOyLth0EU+AUb6JMGCLaTWIykJFa7hyAybjVH9gpVMTfUAwo5fWAvtFt2Tjh/Elg8JtgNpnMnM8g==",
+  "license": "UNKNOWN",
+  "author": "Michael Stum",
+  "cases": [],
+  "divergences": []
+}
