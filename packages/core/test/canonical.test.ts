@@ -50,12 +50,12 @@ describe('canonical', () => {
     expect(canonical([shared, shared])).toEqual([{ v: 1 }, { v: 1 }]);
   });
 
-  it('is a function of the value: equal JSON values give equal strings', () => {
+  it('is a function of the value: a deep copy gives the same string', () => {
+    // structuredClone, not a JSON round trip: JSON turns -0 into 0, and
+    // canonical keeps them apart on purpose.
     fc.assert(
-      fc.property(fc.jsonValue(), (v) => {
-        const copy = JSON.parse(JSON.stringify(v));
-        return canonicalString(v) === canonicalString(copy);
-      }),
+      fc.property(fc.anything({ withDate: true, withMap: true, withSet: true }), (v) => canonicalString(v) === canonicalString(structuredClone(v))),
+      { numRuns: 2000 },
     );
   });
 
