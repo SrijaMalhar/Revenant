@@ -60,5 +60,88 @@
       "inputsToCatch": 1,
       "shrinks": 22
     }
-  ]
+  ],
+  "coverage": {
+    "lines": 99.87,
+    "branches": 99.39,
+    "seed": 42,
+    "measuredAt": "2026-11-24",
+    "uncovered": [
+      "original/lib/time-span.js:758"
+    ]
+  },
+  "redos": {
+    "originalVulnerable": 7,
+    "revivedVulnerable": 0,
+    "checker": "recheck 4.6.2",
+    "measuredAt": "2026-11-24",
+    "originalFindings": [
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:168",
+        "pattern": "/(\\d+)milli(?:second)?[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:178",
+        "pattern": "/(\\d+)second[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:188",
+        "pattern": "/(\\d+)minute[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:198",
+        "pattern": "/(\\d+)hour[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:208",
+        "pattern": "/(\\d+)day[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:252",
+        "pattern": "/(\\d+)month[s]?/i",
+        "complexity": "2nd degree polynomial"
+      },
+      {
+        "file": "ossuary/timespan/original/lib/time-span.js:269",
+        "pattern": "/(\\d+)year[s]?/i",
+        "complexity": "2nd degree polynomial"
+      }
+    ]
+  },
+  "inputStats": {
+    "ISO date": 0.137,
+    "NOW form": 0.322,
+    "signed form": 0.146,
+    "ISO + Z + modifiers": 0.262,
+    "3+ modifiers": 0.419,
+    "other text": 0.146
+  },
+  "delta": {
+    "subtreePackages": [
+      1,
+      0
+    ],
+    "installScripts": [
+      0,
+      0
+    ],
+    "maintainerAccounts": [
+      1,
+      0
+    ],
+    "gzipBytes": [
+      1762,
+      2004
+    ],
+    "opsPerSec": [
+      213,
+      208
+    ],
+    "measuredAt": "2026-11-24"
+  }
 }

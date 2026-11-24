@@ -71,5 +71,74 @@
       "shrinks": 5,
       "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs."
     }
-  ]
+  ],
+  "coverage": {
+    "lines": 98.1,
+    "branches": 99.11,
+    "seed": 42,
+    "measuredAt": "2026-11-24",
+    "uncovered": [
+      "original/index.js:151-154",
+      "original/index.js:281-286"
+    ]
+  },
+  "redos": {
+    "originalVulnerable": 0,
+    "revivedVulnerable": 0,
+    "checker": "recheck 4.6.2",
+    "measuredAt": "2026-11-24",
+    "originalFindings": []
+  },
+  "inputStats": {
+    "absolute": 0.535,
+    "relative": 0.386,
+    "contains ..": 0.252,
+    "contains //": 0.231,
+    "trailing /": 0.472,
+    "empty string": 0.033,
+    "not a string": 0.046
+  },
+  "delta": {
+    "subtreePackages": [
+      1,
+      0
+    ],
+    "installScripts": [
+      0,
+      0
+    ],
+    "maintainerAccounts": [
+      1,
+      0
+    ],
+    "gzipBytes": [
+      1746,
+      1812
+    ],
+    "opsPerSec": [
+      427,
+      420
+    ],
+    "measuredAt": "2026-11-24"
+  },
+  "referee": {
+    "against": "node:path.posix",
+    "agree": 109434,
+    "total": 110000,
+    "examples": [
+      {
+        "caseName": "format",
+        "input": [],
+        "original": {
+          "kind": "ok",
+          "value": ""
+        },
+        "node": {
+          "kind": "throw",
+          "name": "TypeError"
+        }
+      }
+    ],
+    "measuredAt": "2026-11-24 (Node 22.23.5)"
+  }
 }

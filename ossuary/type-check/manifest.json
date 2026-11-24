@@ -56,5 +56,54 @@
       "shrinks": 18,
       "note": "Survived 100,000 inputs at first: random token soup never reached a field key that is not an identifier. Fixed by adding near-miss type strings (one token replaced, inserted or dropped)."
     }
-  ]
+  ],
+  "coverage": {
+    "lines": 98.83,
+    "branches": 97.54,
+    "seed": 42,
+    "measuredAt": "2026-11-24",
+    "uncovered": [
+      "original/lib/check.js:110-111",
+      "original/lib/check.js:115-116"
+    ]
+  },
+  "redos": {
+    "originalVulnerable": 0,
+    "revivedVulnerable": 0,
+    "checker": "recheck 4.6.2",
+    "measuredAt": "2026-11-24",
+    "originalFindings": []
+  },
+  "inputStats": {
+    "has |": 0.786,
+    "has Maybe": 0.45,
+    "nested 2+ deep": 0.418,
+    "has fields {}": 0.331,
+    "has ...": 0.224,
+    "value is NaN": 0.011,
+    "value is an object or array": 0.707
+  },
+  "delta": {
+    "subtreePackages": [
+      2,
+      0
+    ],
+    "installScripts": [
+      0,
+      0
+    ],
+    "maintainerAccounts": [
+      1,
+      0
+    ],
+    "gzipBytes": [
+      6516,
+      1716
+    ],
+    "opsPerSec": [
+      209,
+      234
+    ],
+    "measuredAt": "2026-11-24"
+  }
 }
