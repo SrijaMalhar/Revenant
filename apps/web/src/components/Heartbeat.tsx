@@ -31,8 +31,8 @@ export function Heartbeat({ vitals, scannedAt, width = 160, height = 26, classNa
   const flatFrom = x(Date.parse(vitals.lastRelease));
   return (
     <svg className={className} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={label}>
-      <path d={`${d} L${flatFrom.toFixed(1)} ${base}`} fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
-      <line x1={flatFrom} x2={width} y1={base} y2={base} stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.25" />
+      <path d={`${d} L${flatFrom.toFixed(1)} ${base}`} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <line x1={flatFrom} x2={width} y1={base} y2={base} stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -52,8 +52,8 @@ export function DownloadsLine({ weeks, width = 420, height = 48 }: { weeks: { we
   const pts = weeks.map((w, i) => `${((i / Math.max(weeks.length - 1, 1)) * (width - 4) + 2).toFixed(1)},${(height - 2 - (w.downloads / max) * (height - 6)).toFixed(1)}`);
   const total = weeks.reduce((a, w) => a + w.downloads, 0);
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${total.toLocaleString('en-US')} downloads over the last ${weeks.length} weeks, peaking at ${max.toLocaleString('en-US')} in a week`} style={{ width: '100%', height: 'auto' }}>
-      <polyline points={pts.join(' ')} fill="none" stroke="var(--bone)" strokeWidth="1.5" strokeLinejoin="round" />
+    <svg className="downloads-line" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${total.toLocaleString('en-US')} downloads over the last ${weeks.length} weeks, peaking at ${max.toLocaleString('en-US')} in a week`}>
+      <polyline points={pts.join(' ')} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
 }

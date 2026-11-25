@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 // The 60-second tour: four coach marks across the two screens. Skippable,
 // keyboard accessible, and dismissal is remembered in localStorage.
 const STEPS = [
-  { target: 'example', text: 'Start here: scan a project that has one popular linter installed.' },
-  { target: 'revive-stone', text: 'Each tombstone is a dead package, tallest for the longest silence. Open the worst one marked Revive.' },
+  { target: 'example', text: 'Start here: scan this small sample repo.' },
+  { target: 'revive-stone', text: 'Each tombstone is a dead package, tallest for the longest silence. Open the one marked Revive.' },
   { target: 'run', text: 'Run the original and the revived package side by side on 100,000 generated inputs.' },
   { target: 'exorcism', text: "timespan's original has a known ReDoS. This chart shows it, and that the revived one doesn't." },
 ] as const;
@@ -83,14 +83,12 @@ export function Tour() {
   return (
     <div className="coach" role="dialog" aria-live="polite" aria-label={`Tour, step ${step + 1} of ${STEPS.length}`} style={{ top, left }}>
       <p>{STEPS[step]!.text}</p>
-      <p className="small">
-        Step {step + 1} of {STEPS.length}
-      </p>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <p className="caption">
+        Step {step + 1} of {STEPS.length}.{' '}
         <button type="button" className="link" onClick={end}>
           Skip the tour
         </button>
-      </div>
+      </p>
     </div>
   );
 }

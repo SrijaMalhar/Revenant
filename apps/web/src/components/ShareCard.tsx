@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import type { GraveNode, GraveyardReport, ZombieScore } from '@revenant/core/types';
 import { date, monthYear } from '../lib/format.ts';
+import { band } from '../lib/graveyard.ts';
+import { palette } from '../lib/tokens.ts';
 
 /**
  * A card made in the browser after a scan: repo, dead count, the top three
@@ -12,31 +14,33 @@ export function ShareCard({ report, ranked, permalink, onClose }: { report: Grav
   const [copied, setCopied] = useState(false);
   const label = report.input.kind === 'github' ? `${report.input.owner}/${report.input.repo}` : report.root.name;
   const dead = ranked.length;
-  const badge = `[![Revenant: ${dead} dead dependencies](https://img.shields.io/badge/revenant-${dead}%20dead%20dependencies-3b403c)](${permalink})`;
+  const badge = `[![Revenant: ${dead} dead dependencies](https://img.shields.io/badge/revenant-${dead}%20dead%20dependencies-7fb069)](${permalink})`;
 
   useEffect(() => {
     const c = canvasRef.current!;
     const ctx = c.getContext('2d')!;
     const W = (c.width = 1200);
     const H = (c.height = 630);
-    ctx.fillStyle = '#0e1210';
+    const p = palette();
+    const bandColor = (total: number) => ({ low: p.strong, medium: p.warn, high: p.dead })[band(total)];
+    ctx.fillStyle = p.bg;
     ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#e9e4d4';
+    ctx.fillStyle = p.strong;
     ctx.font = '56px "IM Fell English", Georgia, serif';
     ctx.fillText(label, 64, 110);
-    ctx.font = '30px "Atkinson Hyperlegible", sans-serif';
-    ctx.fillStyle = '#a3a093';
+    ctx.font = '28px "IBM Plex Sans", system-ui, sans-serif';
+    ctx.fillStyle = p.text;
     ctx.fillText(`${dead} dead ${dead === 1 ? 'dependency' : 'dependencies'} of ${report.nodes.length} scanned, ${date(report.scannedAt)}`, 64, 160);
     ranked.slice(0, 3).forEach(({ node, score }, i) => {
       const y = 250 + i * 110;
-      ctx.fillStyle = i === 0 ? '#c6f432' : '#e9e4d4';
-      ctx.font = '48px "IM Fell English", Georgia, serif';
+      ctx.fillStyle = bandColor(score.total);
+      ctx.font = '500 44px "IBM Plex Mono", ui-monospace, monospace';
       ctx.fillText(String(score.total), 64, y + 18);
-      ctx.fillStyle = '#e9e4d4';
+      ctx.fillStyle = p.strong;
       ctx.font = '34px "IM Fell English", Georgia, serif';
       ctx.fillText(node.name, 170, y);
-      ctx.font = '22px "Atkinson Hyperlegible", sans-serif';
-      ctx.fillStyle = '#a3a093';
+      ctx.font = '22px "IBM Plex Mono", ui-monospace, monospace';
+      ctx.fillStyle = p.muted;
       ctx.fillText(`no release since ${monthYear(node.vitals.lastRelease)}`, 170, y + 32);
       // flatline: spikes for release years, then flat to the scan date
       const years = node.vitals.releasesByYear ?? [];
@@ -47,8 +51,8 @@ export function ShareCard({ report, ranked, permalink, onClose }: { report: Grav
         const end = Date.parse(report.scannedAt);
         const X = (t: number) => x0 + ((t - start) / (end - start)) * (x1 - x0);
         const base = y + 6;
-        ctx.strokeStyle = i === 0 ? '#c6f432' : '#e9e4d4';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = p.text;
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(x0, base);
         const max = Math.max(...years.map((yy) => yy.count));
@@ -64,8 +68,8 @@ export function ShareCard({ report, ranked, permalink, onClose }: { report: Grav
         ctx.stroke();
       }
     });
-    ctx.fillStyle = '#a3a093';
-    ctx.font = '22px "Atkinson Hyperlegible", sans-serif';
+    ctx.fillStyle = p.muted;
+    ctx.font = '22px "IBM Plex Mono", ui-monospace, monospace';
     ctx.fillText(permalink, 64, H - 48);
   }, [label, dead, ranked, report, permalink]);
 
@@ -80,17 +84,17 @@ export function ShareCard({ report, ranked, permalink, onClose }: { report: Grav
   };
 
   return (
-    <dialog open aria-labelledby="share-title" style={{ position: 'fixed', inset: 0, margin: 'auto', zIndex: 30 }}>
-      <div style={{ display: 'grid', gap: '1rem' }}>
+    <dialog open className="modal" aria-labelledby="share-title">
+      <div className="stack">
         <h2 id="share-title">Share this graveyard</h2>
-        <canvas ref={canvasRef} style={{ width: '100%', height: 'auto', border: '1px solid var(--stone-edge)' }} aria-label={`Share card: ${label}, ${dead} dead dependencies`} />
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          <button type="button" onClick={downloadPng}>
+        <canvas ref={canvasRef} className="share-canvas" aria-label={`Share card: ${label}, ${dead} dead dependencies`} />
+        <p className="actions">
+          <button type="button" className="primary" onClick={downloadPng}>
             Download PNG
           </button>
           <button
             type="button"
-            className="quiet"
+            className="secondary"
             onClick={async () => {
               await navigator.clipboard.writeText(badge);
               setCopied(true);
@@ -98,11 +102,11 @@ export function ShareCard({ report, ranked, permalink, onClose }: { report: Grav
           >
             {copied ? 'Badge copied' : 'Copy README badge'}
           </button>
-          <button type="button" className="quiet" onClick={onClose}>
+          <button type="button" className="secondary" onClick={onClose}>
             Close
           </button>
-        </div>
-        <p className="small muted">The badge shows today's count. Its link re-runs the scan, so anyone who clicks it sees the current graveyard.</p>
+        </p>
+        <p className="caption">The badge shows today's count. Its link re-runs the scan, so anyone who clicks it sees the current graveyard.</p>
       </div>
     </dialog>
   );

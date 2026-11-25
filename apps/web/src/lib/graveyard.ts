@@ -1,21 +1,29 @@
 import type { GraveNode, ZombieScore } from '@revenant/core/types';
 import { yearsSince } from '@revenant/core/zombie';
+import { compact } from './format.ts';
 
 // Every visual property of a tombstone encodes something true about the package.
 export interface Decoration {
   heightYears: number; // years since last release, capped at 10
   cracked: boolean; // at least one open advisory
   chained: boolean; // install scripts present
-  glow: boolean; // the highest Zombie Index on screen
+  band: Band; // the Zombie Index band, shown as a color and a word
   fog: 'clear' | 'thick'; // thick = Revenant couldn't fully read its data
 }
 
-export function decorate(node: GraveNode, scannedAt: string, topScore: number, score: ZombieScore): Decoration {
+export type Band = 'low' | 'medium' | 'high';
+
+/** 60 and up is high, 40 to 59 medium, below 40 low. */
+export function band(total: number): Band {
+  return total >= 60 ? 'high' : total >= 40 ? 'medium' : 'low';
+}
+
+export function decorate(node: GraveNode, scannedAt: string, score: ZombieScore): Decoration {
   return {
     heightYears: Math.min(10, yearsSince(node.vitals.lastRelease, scannedAt)),
     cracked: node.vitals.advisories.length > 0,
     chained: node.vitals.installScripts,
-    glow: score.total === topScore,
+    band: band(score.total),
     fog: node.incomplete ? 'thick' : 'clear',
   };
 }
@@ -34,16 +42,26 @@ export function causeOfDeath(node: GraveNode, scannedAt: string): { cause: strin
 
 // ---------- epitaphs ----------
 //
-// One line under each tombstone, filled with real numbers. The templates are
-// deliberately empty: they're the most visible text in the app and should be
-// written by hand. Add 8 to 10 here; each names the rule that picks it.
-// Placeholders: {name} {weekly} {year} {years} {advisories}
+// One line under each tombstone, filled with real numbers. Each template names
+// the rule that picks it; the first rule that fits a package wins.
+// Placeholders: {name} {weekly} {weeklyShort} {year} {years} {advisories}
 export interface EpitaphTemplate {
   id: string;
   when: 'deprecated' | 'advisories' | 'install-scripts' | 'high-reach' | 'single-maintainer' | 'any';
   text: string;
 }
-export const EPITAPHS: EpitaphTemplate[] = [];
+export const EPITAPHS: EpitaphTemplate[] = [
+  { id: 'deprecated-installs', when: 'deprecated', text: 'Deprecated by its own maintainers, still installed {weeklyShort} times a week.' },
+  { id: 'deprecated-goodbye', when: 'deprecated', text: "Its maintainers said goodbye. The installs didn't stop." },
+  { id: 'advisory-no-patch', when: 'advisories', text: 'Has a known security hole and no one left to patch it.' },
+  { id: 'advisory-since', when: 'advisories', text: 'Open advisories, and no release since {year}.' },
+  { id: 'install-script', when: 'install-scripts', text: "Still runs a script every time it's installed." },
+  { id: 'reach-since', when: 'high-reach', text: 'Still installed {weeklyShort} times a week. Nobody has published since {year}.' },
+  { id: 'reach-old-release', when: 'high-reach', text: '{weeklyShort} installs a week, all of a release from {year}.' },
+  { id: 'reach-years-quiet', when: 'high-reach', text: '{years} years quiet, and still {weeklyShort} installs a week.' },
+  { id: 'one-account', when: 'single-maintainer', text: 'One maintainer account, quiet since {year}.' },
+  { id: 'last-heard', when: 'any', text: 'Last heard from in {year}.' },
+];
 
 const RULE_ORDER: EpitaphTemplate['when'][] = ['deprecated', 'advisories', 'install-scripts', 'high-reach', 'single-maintainer', 'any'];
 
@@ -81,6 +99,7 @@ export function epitaph(node: GraveNode, scannedAt: string, templates: EpitaphTe
     const fill: Record<string, string> = {
       name: node.name,
       weekly: v.weeklyDownloads === null ? 'unknown' : v.weeklyDownloads.toLocaleString('en-US'),
+      weeklyShort: v.weeklyDownloads === null ? 'unknown' : compact(v.weeklyDownloads),
       year: String(new Date(v.lastRelease).getUTCFullYear()),
       years: String(Math.floor(yearsSince(v.lastRelease, scannedAt))),
       advisories: String(v.advisories.length),

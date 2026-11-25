@@ -8,8 +8,8 @@ import { PROXY } from '../lib/scan.ts';
 import { DeathCertificate } from './DeathCertificate.tsx';
 import { DownloadsLine, Heartbeat } from './Heartbeat.tsx';
 import { Prov } from './Provenance.tsx';
-import { ScoreBar } from './ScoreBar.tsx';
 import { actionLabel } from './Tombstone.tsx';
+import { band } from '../lib/graveyard.ts';
 
 export function Drawer({
   node,
@@ -51,38 +51,109 @@ export function Drawer({
     };
   }, [node.name, demo]);
 
+  const b = band(score.total);
+  const factors = [
+    { name: 'Abandonment', value: score.parts.abandonment, max: 40, why: reasons(score.explain, ['Abandonment']) },
+    { name: 'Attack surface', value: score.parts.attackSurface, max: 40, why: reasons(score.explain, ['Attack surface', 'Maintainers']) },
+    { name: 'Reach', value: score.parts.reach, max: 20, why: reasons(score.explain, ['Reach', 'Weekly downloads']) },
+  ];
+
   return (
     <>
       <div className="drawer-backdrop" onClick={onClose} />
       <aside className="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
-        <header>
+        <header className="drawer-head">
           <div>
-            <h2 id="drawer-title">{node.name}</h2>
-            <p className="muted">
+            <h2 id="drawer-title" className="mono">
+              {node.name}
+            </h2>
+            <p className="meta">
               {node.version} installed, {v.latestVersion} latest
             </p>
           </div>
-          <button ref={closeRef} type="button" className="quiet" onClick={onClose}>
+          <button ref={closeRef} type="button" className="secondary" onClick={onClose}>
             Close
           </button>
         </header>
 
-        <section aria-labelledby="score-h">
-          <h3 id="score-h">
-            Zombie Index <span className="total-line">{score.total}</span>
-          </h3>
-          <ul className="breakdown">
-            {score.explain.map((line) => (
-              <li key={line}>{line}</li>
+        <nav className="path" aria-label="How it got into the tree">
+          <ol>
+            {node.path.map((p) => (
+              <li key={p}>{p}</li>
             ))}
-          </ul>
-          <ScoreBar score={score} />
+          </ol>
+          <p className="caption">
+            One path, the shortest: the merged graph keeps only that one. Reached {node.dev ? 'only through devDependencies, so it runs on developer machines and in CI' : 'through production dependencies'}.
+          </p>
+        </nav>
+
+        <section aria-labelledby="score-h">
+          <h3 id="score-h">Zombie Index</h3>
+          <p className={`drawer-index band-${b}`}>
+            <span className="n">{score.total}</span> <span className="band-word">{b}</span>
+          </p>
+          <table className="factors">
+            <caption className="visually-hidden">The three parts of the Zombie Index</caption>
+            <thead>
+              <tr>
+                <th scope="col">Factor</th>
+                <th scope="col" className="num">
+                  Score
+                </th>
+                <th scope="col">Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              {factors.map((f) => (
+                <tr key={f.name}>
+                  <th scope="row">{f.name}</th>
+                  <td className="num">
+                    {f.value.toFixed(1)} <span className="of">/ {f.max}</span>
+                  </td>
+                  <td>{f.why}</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">Total</th>
+                <td className="num">
+                  {score.total} <span className="of">/ 100</span>
+                </td>
+                <td />
+              </tr>
+            </tfoot>
+          </table>
+        </section>
+
+        <section aria-labelledby="downloads-h">
+          <h3 id="downloads-h">Downloads</h3>
+          {weeks === 'loading' ? <p className="caption">Loading the last year of downloads…</p> : null}
+          {Array.isArray(weeks) ? (
+            <>
+              <DownloadsLine weeks={weeks} />
+              <p className="caption">
+                Weekly downloads over the last year, {num(weeks.reduce((a, w) => a + w.downloads, 0))} in total
+                <Prov source="npm" at={scanDay} detail="api.npmjs.org downloads range" />.
+              </p>
+            </>
+          ) : null}
+          {weeks === 'unavailable' ? (
+            <p className="caption">
+              {v.weeklyDownloads === null ? 'Weekly downloads unknown' : `${num(v.weeklyDownloads)} downloads last week`}
+              <Prov source="npm" at={scanDay} />. The full year isn't available{demo ? ' in demo mode' : ' right now'}.
+            </p>
+          ) : null}
+        </section>
+
+        <section aria-labelledby="action-h">
+          <h3 id="action-h">What to do</h3>
           <p>
-            <span className={`action ${score.action}`}>{actionLabel(node, score)}</span>
+            <span className={`chip action-${score.action}`}>{actionLabel(node, score)}</span>
           </p>
           {score.action === 'replace' ? (
             <p className="small">
-              Replacement from the{' '}
+              From the{' '}
               <a href={E18E_SOURCE.url} target="_blank" rel="noreferrer">
                 e18e module-replacements
               </a>{' '}
@@ -91,92 +162,99 @@ export function Drawer({
           ) : null}
           {revivable ? (
             <p>
-              <a className="button" href={`/soul/${revivable}`} onClick={linkHandler(`/soul/${revivable}`)} data-tour="open-soul">
-                Run Soul Match on the revived {revivable}
+              <a className="button primary" href={`/ossuary/${revivable}`} onClick={linkHandler(`/ossuary/${revivable}`)} data-tour="open-soul">
+                Open the Soul Match for {revivable}
               </a>
             </p>
           ) : null}
+          {score.action === 'watch' ? <p className="small">No maintained replacement is listed and Revenant hasn't rebuilt it. Keep an eye on it.</p> : null}
         </section>
 
         <section aria-labelledby="pulse-h">
-          <h3 id="pulse-h">Pulse</h3>
+          <h3 id="pulse-h">Release history</h3>
           <Heartbeat vitals={v} scannedAt={scannedAt} width={420} height={44} className="heartbeat-lg" />
-          <p className="small muted">
+          <p className="caption">
             Releases by year from deps.dev publish dates
             <Prov source="deps.dev" at={scanDay} />. Last release {date(v.lastRelease)}.
-          </p>
-          {weeks === 'loading' ? <p className="small muted">Loading the last year of downloads…</p> : null}
-          {Array.isArray(weeks) ? (
-            <>
-              <DownloadsLine weeks={weeks} />
-              <p className="small muted">
-                Weekly downloads over the last year, {num(weeks.reduce((a, w) => a + w.downloads, 0))} in total
-                <Prov source="npm" at={scanDay} detail="api.npmjs.org downloads range" />.
-              </p>
-            </>
-          ) : null}
-          {weeks === 'unavailable' ? <p className="small muted">The year of downloads isn't available{demo ? ' in demo mode' : ' right now'}.</p> : null}
-        </section>
-
-        <section aria-labelledby="path-h">
-          <h3 id="path-h">How it got here</h3>
-          <ol className="crumbs">
-            {node.path.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ol>
-          <p className="small muted">
-            One path, the shortest: the merged graph keeps only that one. Reached {node.dev ? 'only through devDependencies, so it runs on developer machines and in CI' : 'through production dependencies'}.
           </p>
         </section>
 
         <section aria-labelledby="vitals-h">
           <h3 id="vitals-h">Vitals</h3>
-          <dl className="legend">
-            <dt>Weekly downloads</dt>
-            <dd>
-              {v.weeklyDownloads === null ? 'unknown' : num(v.weeklyDownloads)}
-              <Prov source="npm" at={scanDay} />
-            </dd>
-            <dt>Maintainer accounts</dt>
-            <dd>
-              {v.maintainers ?? 'unknown'}
-              <Prov source="npm" at={scanDay} detail="count only, from the package document" />
-            </dd>
-            <dt>Install scripts</dt>
-            <dd>{v.installScripts ? 'yes' : 'none'}</dd>
-            <dt>Open advisories</dt>
-            <dd>
-              {v.advisories.length ? v.advisories.join(', ') : 'none'}
-              <Prov source="deps.dev" at={scanDay} />
-            </dd>
-            <dt>Deprecated</dt>
-            <dd>{v.deprecated ?? 'no'}</dd>
-          </dl>
-          <button type="button" className="quiet" onClick={() => setCert(true)}>
+          <table className="kv">
+            <tbody>
+              <tr>
+                <th scope="row">Maintainer accounts</th>
+                <td>
+                  {v.maintainers ?? 'unknown'}
+                  <Prov source="npm" at={scanDay} detail="count only, from the package document" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Install scripts</th>
+                <td>{v.installScripts ? 'yes' : 'none'}</td>
+              </tr>
+              <tr>
+                <th scope="row">Open advisories</th>
+                <td>
+                  {v.advisories.length ? v.advisories.join(', ') : 'none'}
+                  <Prov source="deps.dev" at={scanDay} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Deprecated</th>
+                <td>{v.deprecated ?? 'no'}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" className="secondary" onClick={() => setCert(true)}>
             Issue a death certificate
           </button>
         </section>
 
         <section aria-labelledby="legend-h">
           <h3 id="legend-h">Reading a tombstone</h3>
-          <dl className="legend">
-            <dt>Height</dt>
-            <dd>Years since the last release, up to 10</dd>
-            <dt>A crack</dt>
-            <dd>At least one open advisory</dd>
-            <dt>A chain</dt>
-            <dd>Install scripts</dd>
-            <dt>Glow</dt>
-            <dd>The highest Zombie Index on screen</dd>
-            <dt>Thick fog</dt>
-            <dd>Revenant couldn't read all of its data</dd>
-            <dt>The line</dt>
-            <dd>One spike per year of releases, flat since the last one</dd>
-          </dl>
+          <table className="kv">
+            <tbody>
+              <tr>
+                <th scope="row">Height</th>
+                <td>Years since the last release, up to 10</td>
+              </tr>
+              <tr>
+                <th scope="row">Years</th>
+                <td>First and last release</td>
+              </tr>
+              <tr>
+                <th scope="row">Number and word</th>
+                <td>Zombie Index: low under 40, medium 40 to 59, high 60 and up</td>
+              </tr>
+              <tr>
+                <th scope="row">The line</th>
+                <td>One spike per year of releases, flat since the last one</td>
+              </tr>
+              <tr>
+                <th scope="row">A crack</th>
+                <td>At least one open advisory</td>
+              </tr>
+              <tr>
+                <th scope="row">A chain</th>
+                <td>Install scripts</td>
+              </tr>
+              <tr>
+                <th scope="row">Dashed outline</th>
+                <td>Revenant couldn't read all of its data</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
         {cert ? <DeathCertificate node={node} scannedAt={scannedAt} onClose={() => setCert(false)} /> : null}
       </aside>
     </>
   );
+}
+
+/** The explanation lines for one factor, without the "Factor +12: " prefix. */
+function reasons(explain: string[], prefixes: string[]): string {
+  const lines = explain.filter((l) => prefixes.some((p) => l.startsWith(p))).map((l) => l.replace(/^(Abandonment|Attack surface|Reach) \+[\d.]+:\s*/, ''));
+  return lines.length ? lines.join('; ') : 'nothing adds to this';
 }

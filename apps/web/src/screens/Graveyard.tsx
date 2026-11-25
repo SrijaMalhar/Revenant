@@ -4,21 +4,23 @@ import { rankDead } from '@revenant/core/zombie';
 import type { GraveNode, GraveyardReport, ScanInput } from '@revenant/core/types';
 import { Drawer } from '../components/Drawer.tsx';
 import { Horizon } from '../components/Horizon.tsx';
-import { OssuaryShelf } from '../components/OssuaryShelf.tsx';
+import { OssuaryTable } from '../components/OssuaryTable.tsx';
 import { ShareCard } from '../components/ShareCard.tsx';
-import { Tombstone } from '../components/Tombstone.tsx';
+import { StoneSkeleton, Tombstone } from '../components/Tombstone.tsx';
 import { advanceTour, startTour } from '../components/Tour.tsx';
 import { date, num } from '../lib/format.ts';
 import { decorate, epitaph } from '../lib/graveyard.ts';
 import { ossuaryIndex, type OssuaryEntry } from '../lib/ossuary.ts';
-import { navigate, useLocation } from '../lib/router.ts';
-import { EXAMPLE_MANIFEST, PROXY, loadDemoReport } from '../lib/scan.ts';
+import { navigate, scrollToHash, useLocation } from '../lib/router.ts';
+import { PROXY, loadDemoReport } from '../lib/scan.ts';
+
+const SAMPLES = ['SrijaMalhar/revenant-demo', 'eslint/eslint', 'expressjs/express'];
 
 type State =
   | { kind: 'empty' }
-  | { kind: 'scanning'; checked: number; total: number }
+  | { kind: 'scanning'; label: string; checked: number; total: number }
   | { kind: 'done'; report: GraveyardReport }
-  | { kind: 'error'; message: string };
+  | { kind: 'error'; message: string; raw: string };
 
 export function Graveyard() {
   const { search } = useLocation();
@@ -35,6 +37,7 @@ export function Graveyard() {
   useEffect(() => {
     ossuaryIndex().then(setOssuary, () => setOssuary([]));
     loadDemoReport().then(setPreview, () => setPreview(null));
+    if (window.location.hash) scrollToHash(window.location.hash);
   }, []);
 
   const showDemo = useCallback(async () => {
@@ -43,68 +46,65 @@ export function Graveyard() {
       setStreamed([]);
       setState({ kind: 'done', report: demo });
     } else {
-      setState({ kind: 'error', message: 'No demo report has been recorded yet. Run npm run fixtures -- <owner/repo> --demo to record one.' });
+      setState({ kind: 'error', message: 'No recorded scan is available on this copy of the site.', raw: '' });
     }
   }, []);
 
-  const run = useCallback(
-    async (raw: string) => {
-      let input: ScanInput;
-      try {
-        input = parseScanInput(raw);
-      } catch (e) {
-        setState({ kind: 'error', message: e instanceof InputError ? e.message : String(e) });
-        return;
-      }
-      if (input.kind === 'github') navigate(`/?repo=${encodeURIComponent(`${input.owner}/${input.repo}${input.ref ? `/tree/${input.ref}` : ''}`)}`, true);
-      const id = ++runId.current;
-      let first: Date | null = null;
-      setStreamed([]);
-      setOpen(null);
-      setState({ kind: 'scanning', checked: 0, total: 0 });
-      let proxyDown = false;
-      try {
-        const report = await scan(input, {
-          fetch: async (url, init) => {
-            try {
-              const res = await fetch(url, init);
-              if (res.status >= 502 && res.status <= 504) proxyDown = true;
-              return res;
-            } catch (e) {
-              proxyDown = true;
-              throw e;
-            }
-          },
-          now: () => {
-            const d = new Date();
-            if (!first) {
-              first = d;
-              setStartedAt(d.toISOString());
-            }
-            return d;
-          },
-          proxy: PROXY,
-          onNode: (n) => id === runId.current && setStreamed((s) => [...s, n]),
-          onProgress: (checked, total) => id === runId.current && setState({ kind: 'scanning', checked, total }),
-        });
-        if (id === runId.current) setState({ kind: 'done', report });
-      } catch (e) {
-        if (id !== runId.current) return;
-        // If the upstream services can't be reached, fall back to the recorded demo report.
-        if (proxyDown || !(e instanceof ScanError)) {
-          const demo = await loadDemoReport();
-          if (demo) {
-            setState({ kind: 'done', report: demo });
-            return;
+  const run = useCallback(async (raw: string) => {
+    let input: ScanInput;
+    try {
+      input = parseScanInput(raw);
+    } catch (e) {
+      setState({ kind: 'error', message: e instanceof InputError ? e.message : String(e), raw });
+      return;
+    }
+    if (input.kind === 'github') navigate(`/?repo=${encodeURIComponent(`${input.owner}/${input.repo}${input.ref ? `/tree/${input.ref}` : ''}`)}`, true);
+    const id = ++runId.current;
+    let first: Date | null = null;
+    setStreamed([]);
+    setOpen(null);
+    setState({ kind: 'scanning', label: describeInput(input), checked: 0, total: 0 });
+    let proxyDown = false;
+    try {
+      const report = await scan(input, {
+        fetch: async (url, init) => {
+          try {
+            const res = await fetch(url, init);
+            if (res.status >= 502 && res.status <= 504) proxyDown = true;
+            return res;
+          } catch (e) {
+            proxyDown = true;
+            throw e;
           }
+        },
+        now: () => {
+          const d = new Date();
+          if (!first) {
+            first = d;
+            setStartedAt(d.toISOString());
+          }
+          return d;
+        },
+        proxy: PROXY,
+        onNode: (n) => id === runId.current && setStreamed((s) => [...s, n]),
+        onProgress: (checked, total) => id === runId.current && setState({ kind: 'scanning', label: describeInput(input), checked, total }),
+      });
+      if (id === runId.current) setState({ kind: 'done', report });
+    } catch (e) {
+      if (id !== runId.current) return;
+      // If the upstream services can't be reached at all, fall back to the recorded scan and say so.
+      if (proxyDown || !(e instanceof ScanError)) {
+        const demo = await loadDemoReport();
+        if (demo) {
+          setState({ kind: 'done', report: demo });
+          return;
         }
-        setState({ kind: 'error', message: e instanceof Error ? e.message : String(e) });
       }
-    },
-    [],
-  );
+      setState({ kind: 'error', message: e instanceof Error ? e.message : String(e), raw });
+    }
+  }, []);
 
-  // Permalinks: /?repo=owner/name scans on load; /?demo=1 shows the recorded report.
+  // Permalinks: /?repo=owner/name scans on load; /?demo=1 shows the recorded scan.
   const booted = useRef(false);
   useEffect(() => {
     if (booted.current) return;
@@ -121,106 +121,143 @@ export function Graveyard() {
   const scannedAt = report?.scannedAt ?? startedAt ?? new Date().toISOString();
   const nodes = report ? report.nodes : streamed;
   const ranked = useMemo(() => rankDead(nodes, { scannedAt, ossuary }), [nodes, scannedAt, ossuary]);
-  const top = ranked[0]?.score.total ?? -1;
   const selected = ranked.find((r) => `${r.node.name}@${r.node.version}` === open);
-  const manifestMode = text.trimStart().startsWith('{');
   const permalink = report?.input.kind === 'github' ? `${window.location.origin}/?repo=${report.input.owner}/${report.input.repo}` : window.location.origin;
+  const counts = {
+    replace: ranked.filter((r) => r.score.action === 'replace').length,
+    revive: ranked.filter((r) => r.score.action === 'revive').length,
+  };
 
   return (
     <>
-      <section className={`dig${state.kind === 'empty' ? ' dig-hero' : ''}`} aria-labelledby="dig-h">
-        <h1 id="dig-h">Dig up your project's dead dependencies</h1>
-        <p className="lead">
-          Paste a public GitHub repo or a package.json. Every package with no release in three years gets a tombstone and a score that says how worried to be.
+      <section className="hero" aria-labelledby="hero-h">
+        <h1 id="hero-h">Your dependency tree has a graveyard. Walk it.</h1>
+        <p className="prose">
+          Revenant reads a project's npm dependencies and finds every package with no release in three years. Each one gets a tombstone, a Zombie Index from 0 to 100, and what to do about it.
         </p>
         <form
+          className="scan-form"
           onSubmit={(e) => {
             e.preventDefault();
             void run(text);
           }}
         >
-          <label htmlFor="dig-input" className="visually-hidden">
-            GitHub repo or package.json
-          </label>
-          <div className="dig-row">
-            <textarea
-              id="dig-input"
-              className={manifestMode ? 'manifest' : undefined}
+          <label htmlFor="scan-input">GitHub repo or package.json URL</label>
+          <div className="scan-row">
+            <input
+              id="scan-input"
+              type="text"
               value={text}
-              placeholder="owner/repo or a package.json"
+              placeholder="owner/repo"
               spellCheck={false}
               autoComplete="off"
+              autoCapitalize="off"
               onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && (!manifestMode || e.metaKey || e.ctrlKey)) {
-                  e.preventDefault();
-                  void run(text);
-                }
-              }}
             />
-            <button type="submit" disabled={state.kind === 'scanning' || !text.trim()}>
-              Scan
+            <button type="submit" className="primary" disabled={state.kind === 'scanning' || !text.trim()}>
+              {state.kind === 'scanning' ? 'Scanning…' : 'Scan repo'}
             </button>
           </div>
+          <p className="samples">
+            <span className="meta">Try</span>
+            {SAMPLES.map((s, i) => (
+              <button
+                key={s}
+                type="button"
+                className="chip sample"
+                data-tour={i === 0 ? 'example' : undefined}
+                disabled={state.kind === 'scanning'}
+                onClick={() => {
+                  setText(s);
+                  if (i === 0) advanceTour('example');
+                  void run(s);
+                }}
+              >
+                {s}
+              </button>
+            ))}
+          </p>
+          <p className="caption">
+            New here?{' '}
+            <button type="button" className="link" onClick={startTour}>
+              Take the 60-second tour
+            </button>
+          </p>
         </form>
-        <p className="small">
-          <button
-            type="button"
-            className="link"
-            data-tour="example"
-            onClick={() => {
-              setText(EXAMPLE_MANIFEST);
-              advanceTour('example');
-              void run(EXAMPLE_MANIFEST);
-            }}
-          >
-            Try an example
-          </button>
-          <span className="muted">: a project with one popular linter installed. </span>
-          <button type="button" className="link" onClick={startTour}>
-            Take the 60-second tour
-          </button>
-        </p>
-        <div className="status" aria-live="polite">
-          {state.kind === 'scanning' ? (
-            <p className="muted">
-              {state.total ? `Checked ${num(state.checked)} of ${num(state.total)} packages` : 'Reading the dependency graph'}
-              {streamed.length ? `, ${streamed.length} dead so far` : ''}…
-            </p>
-          ) : null}
-          {state.kind === 'error' ? <p className="error">{state.message}</p> : null}
-        </div>
       </section>
 
-      {state.kind === 'empty' ? <EmptyField preview={preview} ossuary={ossuary} onOpen={() => void showDemo()} /> : null}
-
-      {ranked.length > 0 || report ? (
-        <section className="field" aria-labelledby="field-h">
-          <div className="summary">
-            <h2 id="field-h">
-              {report ? describeInput(report.input) : 'Scanning'}
-              {report ? <span className="muted">: {ranked.length} dead of {num(report.nodes.length)} packages</span> : null}
-            </h2>
-            {report?.source === 'demo' ? <span className="badge-demo">demo data, recorded {date(report.scannedAt)}</span> : null}
-            {report ? (
-              <button type="button" className="quiet" onClick={() => setSharing(true)}>
+      <section className="field" aria-labelledby="field-h" aria-busy={state.kind === 'scanning'}>
+        <h2 id="field-h" className="visually-hidden">
+          The graveyard
+        </h2>
+        <div className="status" aria-live="polite">
+          {state.kind === 'scanning' ? (
+            <p className="summary">
+              Scanning {state.label} · {state.total ? `${num(state.checked)} of ${num(state.total)} packages checked` : 'reading the dependency graph'} · {ranked.length} dead so far
+            </p>
+          ) : null}
+          {report ? (
+            <div className="summary-row">
+              <p className="summary">
+                {describeInput(report.input)} · {num(report.nodes.length)} packages scanned · {ranked.length} dead · {counts.replace} replaceable · {counts.revive} revivable
+              </p>
+              {report.source === 'demo' ? <span className="chip">recorded {date(report.scannedAt)}</span> : null}
+              <button type="button" className="secondary" onClick={() => setSharing(true)}>
                 Share
               </button>
-            ) : null}
+            </div>
+          ) : null}
+        </div>
+
+        {state.kind === 'empty' ? <EmptyState preview={preview} ossuary={ossuary} onOpen={() => void showDemo()} /> : null}
+
+        {state.kind === 'error' ? (
+          <div className="notice error" role="alert">
+            <p>{state.message}</p>
+            <p className="actions">
+              {state.raw ? (
+                <button type="button" className="secondary" onClick={() => void run(state.raw)}>
+                  Try again
+                </button>
+              ) : null}
+              {preview ? (
+                <button type="button" className="secondary" onClick={() => void showDemo()}>
+                  Open the recorded scan
+                </button>
+              ) : null}
+            </p>
           </div>
-          {report && ranked.length === 0 ? <p>Nothing here has gone three years without a release. Nothing to dig up.</p> : null}
-          {report?.truncated ? <p className="small muted">The scan stopped at its limit (1,500 packages or 60 seconds), so this is part of the tree.</p> : null}
+        ) : null}
+
+        {report && report.errors.length ? (
+          <details className="notice">
+            <summary>
+              {report.errors.length} {report.errors.length === 1 ? 'thing' : 'things'} Revenant couldn't fully read, so some numbers are listed as unknown.
+            </summary>
+            <ul>
+              {report.errors.map((e) => (
+                <li key={`${e.at}:${e.message}`}>
+                  <span className="mono">{e.at}</span>: {e.message}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
+        {report?.truncated ? <p className="notice">The scan stopped at its limit (1,500 packages or 60 seconds), so this is part of the tree.</p> : null}
+        {report && ranked.length === 0 ? <p className="notice">Nothing here has gone three years without a release. Nothing to dig up.</p> : null}
+
+        {state.kind === 'scanning' || ranked.length ? (
           <ol className="stones" aria-label="Dead packages, worst first">
-            {ranked.map(({ node, score }) => {
+            {ranked.map(({ node, score }, i) => {
               const key = `${node.name}@${node.version}`;
-              const deco = decorate(node, scannedAt, top, score);
               return (
                 <li key={key}>
                   <Tombstone
                     node={node}
                     score={score}
-                    deco={deco}
+                    deco={decorate(node, scannedAt, score)}
                     scannedAt={scannedAt}
+                    index={i}
                     epitaph={epitaph(node, scannedAt)?.text ?? null}
                     onOpen={() => {
                       if (score.action === 'revive') advanceTour('revive-stone');
@@ -230,28 +267,26 @@ export function Graveyard() {
                 </li>
               );
             })}
-          </ol>
-          {report && report.errors.length ? (
-            <details className="notes">
-              <summary className="small">
-                {report.errors.length} {report.errors.length === 1 ? 'thing' : 'things'} Revenant skipped or couldn't fully read
-              </summary>
-              <ul>
-                {report.errors.map((e) => (
-                  <li key={`${e.at}:${e.message}`}>
-                    {e.at}: {e.message}
+            {state.kind === 'scanning' && ranked.length < 4
+              ? Array.from({ length: 4 - ranked.length }, (_, i) => (
+                  <li key={`skeleton-${i}`}>
+                    <StoneSkeleton />
                   </li>
-                ))}
-              </ul>
-            </details>
-          ) : null}
-          {report ? (
-            <p className="small muted notes">
-              Data from deps.dev and the npm registry, read {date(report.scannedAt)}. deps.dev resolves each dependency's graph on its own, so the merged graph is close to, but not exactly, what npm install produces. Replacements from e18e's module-replacements.
-            </p>
-          ) : null}
-        </section>
-      ) : null}
+                ))
+              : null}
+          </ol>
+        ) : null}
+
+        {report ? (
+          <p className="caption">
+            Data from deps.dev and the npm registry, read {date(report.scannedAt)}. deps.dev resolves each dependency's graph on its own, so the merged graph is close to, but not exactly, what npm install produces. Replacements from e18e
+            module-replacements.
+          </p>
+        ) : null}
+      </section>
+
+      <HowItWorks />
+      <OssuaryTable />
 
       {selected ? (
         <Drawer
@@ -264,31 +299,53 @@ export function Graveyard() {
         />
       ) : null}
       {sharing && report ? <ShareCard report={report} ranked={ranked} permalink={permalink} onClose={() => setSharing(false)} /> : null}
-      {state.kind !== 'scanning' ? <OssuaryShelf /> : null}
     </>
   );
 }
 
-function EmptyField({ preview, ossuary, onOpen }: { preview: GraveyardReport | null; ossuary: OssuaryEntry[]; onOpen: () => void }) {
+function EmptyState({ preview, ossuary, onOpen }: { preview: GraveyardReport | null; ossuary: OssuaryEntry[]; onOpen: () => void }) {
   const ranked = useMemo(() => (preview ? rankDead(preview.nodes, { scannedAt: preview.scannedAt, ossuary }) : []), [preview, ossuary]);
   return (
-    <section className="field field-empty" aria-label="What a scan shows">
+    <div className="empty">
+      <p className="empty-line">Paste a repo to walk the graveyard.</p>
       {preview && ranked.length ? (
-        <div className="horizon-wrap">
+        <figure className="horizon-wrap">
           <Horizon ranked={ranked} scannedAt={preview.scannedAt} />
-          <p className="horizon-caption">
-            <span>
-              A real scan of {describeInput(preview.input)}, recorded {date(preview.scannedAt)}: {ranked.length} dead out of {num(preview.nodes.length)} packages. Taller stones have gone longer without a release.
-            </span>{' '}
+          <figcaption className="caption">
+            A real scan of <span className="mono">{describeInput(preview.input)}</span>, recorded {date(preview.scannedAt)}: {ranked.length} dead out of {num(preview.nodes.length)} packages. Taller stones have gone longer without a
+            release.{' '}
             <button type="button" className="link" onClick={onOpen}>
               Open this graveyard
             </button>
-          </p>
-        </div>
+          </figcaption>
+        </figure>
       ) : null}
-      <p className="muted explainer">
-        Revenant resolves the whole dependency tree, dev dependencies included, because those run on your machine and in CI. A package that has had no release in three years becomes a tombstone with a Zombie Index from 0 to 100. If e18e lists a maintained replacement, the stone says so. If Revenant has rebuilt it, you can watch the rebuild agree with the original on 100,000 inputs.
-      </p>
+    </div>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section className="how" id="how-it-works" aria-labelledby="how-h">
+      <h2 id="how-h">How it works</h2>
+      <ol className="steps">
+        <li>
+          <h3>Scan</h3>
+          <p>Reads the repo's package.json and builds the whole dependency tree from deps.dev, dev dependencies included, because those run on your machine and in CI.</p>
+        </li>
+        <li>
+          <h3>Score</h3>
+          <p>Every package with no release in three years gets a Zombie Index from 0 to 100: how long it's been abandoned, how much it could hurt you, and how many people still install it.</p>
+        </li>
+        <li>
+          <h3>Replace or revive</h3>
+          <p>If e18e's module-replacements list has a maintained alternative, the tombstone points there. If Revenant has rebuilt the package, it says Revive.</p>
+        </li>
+        <li>
+          <h3>Soul Match</h3>
+          <p>The original and the rebuild run side by side on 100,000 generated inputs in your browser. Same soul means the same answer every time, or both throw. It's a differential test, not a proof.</p>
+        </li>
+      </ol>
     </section>
   );
 }
