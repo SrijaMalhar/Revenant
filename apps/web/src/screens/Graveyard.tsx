@@ -3,6 +3,8 @@ import { InputError, ScanError, describeInput, parseScanInput, scan } from '@rev
 import { rankDead } from '@revenant/core/zombie';
 import type { GraveNode, GraveyardReport, ScanInput } from '@revenant/core/types';
 import { Drawer } from '../components/Drawer.tsx';
+import { Horizon } from '../components/Horizon.tsx';
+import { OssuaryShelf } from '../components/OssuaryShelf.tsx';
 import { ShareCard } from '../components/ShareCard.tsx';
 import { Tombstone } from '../components/Tombstone.tsx';
 import { advanceTour, startTour } from '../components/Tour.tsx';
@@ -27,10 +29,12 @@ export function Graveyard() {
   const [ossuary, setOssuary] = useState<OssuaryEntry[]>([]);
   const [open, setOpen] = useState<string | null>(null);
   const [sharing, setSharing] = useState(false);
+  const [preview, setPreview] = useState<GraveyardReport | null>(null);
   const runId = useRef(0);
 
   useEffect(() => {
     ossuaryIndex().then(setOssuary, () => setOssuary([]));
+    loadDemoReport().then(setPreview, () => setPreview(null));
   }, []);
 
   const showDemo = useCallback(async () => {
@@ -124,10 +128,10 @@ export function Graveyard() {
 
   return (
     <>
-      <section className="dig" aria-labelledby="dig-h">
-        <h1 id="dig-h">Dig up a project's dead dependencies</h1>
-        <p className="muted">
-          Paste a public GitHub repo or a package.json. Every package with no release in three years gets a tombstone. The worst ones that Revenant has rebuilt can be tested against their originals.
+      <section className={`dig${state.kind === 'empty' ? ' dig-hero' : ''}`} aria-labelledby="dig-h">
+        <h1 id="dig-h">Dig up your project's dead dependencies</h1>
+        <p className="lead">
+          Paste a public GitHub repo or a package.json. Every package with no release in three years gets a tombstone and a score that says how worried to be.
         </p>
         <form
           onSubmit={(e) => {
@@ -188,7 +192,7 @@ export function Graveyard() {
         </div>
       </section>
 
-      {state.kind === 'empty' ? <EmptyField /> : null}
+      {state.kind === 'empty' ? <EmptyField preview={preview} ossuary={ossuary} onOpen={() => void showDemo()} /> : null}
 
       {ranked.length > 0 || report ? (
         <section className="field" aria-labelledby="field-h">
@@ -260,14 +264,29 @@ export function Graveyard() {
         />
       ) : null}
       {sharing && report ? <ShareCard report={report} ranked={ranked} permalink={permalink} onClose={() => setSharing(false)} /> : null}
+      {state.kind !== 'scanning' ? <OssuaryShelf /> : null}
     </>
   );
 }
 
-function EmptyField() {
+function EmptyField({ preview, ossuary, onOpen }: { preview: GraveyardReport | null; ossuary: OssuaryEntry[]; onOpen: () => void }) {
+  const ranked = useMemo(() => (preview ? rankDead(preview.nodes, { scannedAt: preview.scannedAt, ossuary }) : []), [preview, ossuary]);
   return (
-    <section className="field" aria-label="What a scan shows">
-      <p className="muted">
+    <section className="field field-empty" aria-label="What a scan shows">
+      {preview && ranked.length ? (
+        <div className="horizon-wrap">
+          <Horizon ranked={ranked} scannedAt={preview.scannedAt} />
+          <p className="horizon-caption">
+            <span>
+              A real scan of {describeInput(preview.input)}, recorded {date(preview.scannedAt)}: {ranked.length} dead out of {num(preview.nodes.length)} packages. Taller stones have gone longer without a release.
+            </span>{' '}
+            <button type="button" className="link" onClick={onOpen}>
+              Open this graveyard
+            </button>
+          </p>
+        </div>
+      ) : null}
+      <p className="muted explainer">
         Revenant resolves the whole dependency tree, dev dependencies included, because those run on your machine and in CI. A package that has had no release in three years becomes a tombstone with a Zombie Index from 0 to 100. If e18e lists a maintained replacement, the stone says so. If Revenant has rebuilt it, you can watch the rebuild agree with the original on 100,000 inputs.
       </p>
     </section>

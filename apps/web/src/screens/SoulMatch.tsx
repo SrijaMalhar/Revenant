@@ -5,11 +5,12 @@ import { ExorcismChart } from '../components/ExorcismChart.tsx';
 import { Evidence, HonestLimits } from '../components/Evidence.tsx';
 import { Ouija, type CaseInfo } from '../components/Ouija.tsx';
 import { Prov } from '../components/Provenance.tsx';
+import { Pulse } from '../components/Pulse.tsx';
 import { Seance } from '../components/Seance.tsx';
 import { TakeHome } from '../components/TakeHome.tsx';
 import { advanceTour } from '../components/Tour.tsx';
 import { WillAndBody } from '../components/WillAndBody.tsx';
-import { date, num, short } from '../lib/format.ts';
+import { date, num } from '../lib/format.ts';
 import { exorcism, manifest as loadManifest, soulprint as loadSoulprint, type ExorcismTiming } from '../lib/ossuary.ts';
 import { linkHandler, navigate, useLocation } from '../lib/router.ts';
 import { newWorker } from '../lib/worker.ts';
@@ -120,18 +121,20 @@ export function SoulMatch({ pkg }: { pkg: string }) {
           Revived from {m.name} {m.version} by {m.author}, {m.license}. Zero dependencies.
         </p>
         {print ? (
-          <p className="prints">
-            <span>
-              Original Soulprint <code>{short(print.sha256)}</code>
-            </span>
-            <span>
-              Revived Soulprint <code>{short(print.sha256)}</code>
-            </span>
-            <span>
-              {num(print.n)} inputs per case, seed {print.seed}, fast-check {print.fastCheck}, equal
+          <div className="soulprints">
+            <p className="sp-row">
+              <span className="sp-label">Original</span>
+              <code className="sp-hash">{groups(print.sha256)}</code>
+            </p>
+            <p className="sp-row">
+              <span className="sp-label">Revived</span>
+              <code className="sp-hash">{groups(print.sha256)}</code>
+            </p>
+            <p className="small muted">
+              Each Soulprint is a SHA-256 over the answers to {num(print.n)} inputs per case, seed {print.seed}, fast-check {print.fastCheck}. The two are identical.
               <Prov source="ci" at="" detail="npm run soulprint:check recomputes both hashes" />
-            </span>
-          </p>
+            </p>
+          </div>
         ) : null}
       </header>
 
@@ -226,14 +229,24 @@ export function SoulMatch({ pkg }: { pkg: string }) {
             {num(done)}
             <span className="of">of {num(total)}</span>
           </div>
-          <progress max={total} value={done} aria-hidden="true" />
+          <Pulse
+            done={done}
+            total={total}
+            state={status.kind === 'running' ? 'running' : status.kind === 'error' ? 'error' : status.kind === 'done' ? (status.run.status === 'same-soul' ? 'same' : status.run.status === 'diverged' ? 'diverged' : 'error') : 'idle'}
+          />
           {status.kind === 'done' && status.run.status === 'same-soul' ? (
-            <p className="verdict">
-              Same soul. {num(status.run.done)} inputs, {num(status.run.millis)} ms.
-            </p>
+            <div>
+              <p className="verdict">Same soul.</p>
+              <p className="muted">
+                Every answer matched on {num(status.run.done)} inputs, in {num(status.run.millis)} ms.
+              </p>
+            </div>
           ) : null}
           {status.kind === 'done' && status.run.status === 'diverged' ? (
-            <p className="verdict diverged">{possessed ? 'Caught.' : 'Diverged.'} The answers differ on one input.</p>
+            <div>
+              <p className="verdict diverged">{possessed ? 'Caught.' : 'Diverged.'}</p>
+              <p className="muted">The two answers differ on one input, shown below.</p>
+            </div>
           ) : null}
           {status.kind === 'done' && status.run.status === 'error' ? <p className="error">The run stopped: {status.run.error}</p> : null}
           {status.kind === 'error' ? <p className="error">{status.message}</p> : null}
@@ -309,4 +322,9 @@ export function SoulMatch({ pkg }: { pkg: string }) {
       </section>
     </>
   );
+}
+
+/** A hash in groups of eight, so two of them can be compared by eye. */
+function groups(hash: string): string {
+  return hash.match(/.{1,8}/g)?.join(' ') ?? hash;
 }

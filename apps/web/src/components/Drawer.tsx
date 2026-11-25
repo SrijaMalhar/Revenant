@@ -8,6 +8,7 @@ import { PROXY } from '../lib/scan.ts';
 import { DeathCertificate } from './DeathCertificate.tsx';
 import { DownloadsLine, Heartbeat } from './Heartbeat.tsx';
 import { Prov } from './Provenance.tsx';
+import { ScoreBar } from './ScoreBar.tsx';
 import { actionLabel } from './Tombstone.tsx';
 
 export function Drawer({
@@ -75,9 +76,7 @@ export function Drawer({
               <li key={line}>{line}</li>
             ))}
           </ul>
-          <p className="small muted">
-            Abandonment {score.parts.abandonment.toFixed(1)} of 40, attack surface {score.parts.attackSurface.toFixed(1)} of 40, reach {score.parts.reach.toFixed(1)} of 20.
-          </p>
+          <ScoreBar score={score} />
           <p>
             <span className={`action ${score.action}`}>{actionLabel(node, score)}</span>
           </p>
