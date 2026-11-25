@@ -51,6 +51,10 @@ describe('parseScanInput', () => {
     expect(parseScanInput('https://github.com/a/b/tree/feature/x')).toEqual({ kind: 'github', owner: 'a', repo: 'b', ref: 'feature/x' });
     expect(parseScanInput(' {"dependencies": {}} ')).toEqual({ kind: 'manifest', packageJson: '{"dependencies": {}}' });
   });
+  it('accepts a link to the root package.json', () => {
+    expect(parseScanInput('https://github.com/eslint/eslint/blob/main/package.json')).toEqual({ kind: 'github', owner: 'eslint', repo: 'eslint', ref: 'main' });
+    expect(parseScanInput('https://raw.githubusercontent.com/expressjs/express/master/package.json')).toEqual({ kind: 'github', owner: 'expressjs', repo: 'express', ref: 'master' });
+  });
   it('rejects the rest with a plain message', () => {
     for (const bad of ['', 'nope', 'a/b c', 'https://gitlab.com/a/b', '[1]', '{bad', 'a/b/blob/main/x', 'null']) {
       expect(() => parseScanInput(bad), bad).toThrow(InputError);

@@ -28,6 +28,11 @@ export function parseScanInput(raw: string): ScanInput {
   }
 
   let rest = text.replace(/^https?:\/\//i, '').replace(/^www\./i, '');
+  // A link to the root package.json: github.com/o/r/blob/<ref>/package.json or raw.githubusercontent.com/o/r/<ref>/package.json.
+  const rawLink = /^raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(.+)\/package\.json$/i.exec(rest.replace(/[?#].*$/, ''));
+  if (rawLink) rest = `github.com/${rawLink[1]}/${rawLink[2]}/tree/${rawLink[3]}`;
+  const blob = /^github\.com\/([^/]+)\/([^/]+)\/blob\/(.+)\/package\.json$/i.exec(rest.replace(/[?#].*$/, ''));
+  if (blob) rest = `github.com/${blob[1]}/${blob[2]}/tree/${blob[3]}`;
   if (/^github\.com\//i.test(rest)) rest = rest.slice('github.com/'.length);
   else if (/^[^/]+\.[a-z]{2,}\//i.test(rest)) throw new InputError('Only github.com repositories are supported.');
   rest = rest.replace(/[?#].*$/, '').replace(/\/+$/, '');
