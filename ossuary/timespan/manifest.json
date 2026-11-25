@@ -35,7 +35,7 @@
       "caseName": "totalDays",
       "inputsToCatch": 4,
       "shrinks": 30,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "month-rollover-off-by-one",
@@ -44,7 +44,7 @@
       "caseName": "parseDate",
       "inputsToCatch": 39,
       "shrinks": 43,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "parse-ignores-fraction",
@@ -53,7 +53,7 @@
       "caseName": "parse",
       "inputsToCatch": 2,
       "shrinks": 0,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "sign-ignored",
@@ -62,14 +62,14 @@
       "caseName": "parseDate",
       "inputsToCatch": 1,
       "shrinks": 22,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     }
   ],
   "coverage": {
     "lines": 99.87,
     "branches": 99.39,
     "seed": 42,
-    "measuredAt": "2026-11-24",
+    "measuredAt": "2026-11-25",
     "uncovered": [
       "original/lib/time-span.js:758"
     ]

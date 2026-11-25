@@ -147,7 +147,7 @@ const cases: Case<any>[] = [
     parse: typeAndValue,
     examples: ['Even\n2', 'Even\n3', '[Even]\n[2, 4]', 'Maybe Even\nnull'],
   },
-  { name: 'VERSION', arbitrary: fc.constant(null), call: (m) => m.VERSION },
+  { name: 'VERSION', arbitrary: fc.constant(null), fixed: true, call: (m) => m.VERSION },
 ];
 
 export default cases;

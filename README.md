@@ -37,9 +37,9 @@ Three packages, each vendored exactly as npm serves it (checked against the regi
 <!-- soulprints:start -->
 | Package | Soulprint | Inputs | |
 | --- | --- | --- | --- |
-| path-browserify 1.0.1 | `6ff6…0f` | 10,000 inputs per case, seed 42, fast-check 4.11.0 | matches original |
+| path-browserify 1.0.1 | `7dc4…88` | 10,000 inputs per case, seed 42, fast-check 4.11.0 | matches original |
 | timespan 2.3.0 | `1364…28` | 10,000 inputs per case, seed 42, fast-check 4.11.0 | matches original |
-| type-check 0.4.0 | `5bdb…26` | 10,000 inputs per case, seed 42, fast-check 4.11.0 | matches original |
+| type-check 0.4.0 | `95e8…05` | 10,000 inputs per case, seed 42, fast-check 4.11.0 | matches original |
 <!-- soulprints:end -->
 
 ### Evidence, measured 2026-11-24 (UTC) on Node 22.23.5

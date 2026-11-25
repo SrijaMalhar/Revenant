@@ -96,10 +96,10 @@ const cases: Case<any>[] = [
   { name: 'format', arbitrary: pathObject, call: (m, o) => m.format(o), parse: (t) => JSON.parse(t), examples: ['{}', '{"root": "/", "base": "a"}', '{"dir": "/", "name": ".x"}', 'null'] },
   { name: 'format(parse)', arbitrary: maybePath, call: (m, p) => m.format(m.parse(p)), parse: oneArg, examples: pathChips },
   { name: '_makeLong', arbitrary: maybePath, call: (m, p) => m._makeLong(p), parse: oneArg, examples: ['a'] },
-  { name: 'sep', arbitrary: none, call: (m) => m.sep },
-  { name: 'delimiter', arbitrary: none, call: (m) => m.delimiter },
-  { name: 'win32', arbitrary: none, call: (m) => m.win32 },
-  { name: 'posix', arbitrary: none, call: (m) => m.posix },
+  { name: 'sep', arbitrary: none, fixed: true, call: (m) => m.sep },
+  { name: 'delimiter', arbitrary: none, fixed: true, call: (m) => m.delimiter },
+  { name: 'win32', arbitrary: none, fixed: true, call: (m) => m.win32 },
+  { name: 'posix', arbitrary: none, fixed: true, call: (m) => m.posix },
 ];
 
 export default cases;

@@ -37,7 +37,7 @@
       "caseName": "normalize",
       "inputsToCatch": 7,
       "shrinks": 0,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "dotdot-above-root",
@@ -46,7 +46,7 @@
       "caseName": "normalize",
       "inputsToCatch": 38,
       "shrinks": 1,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "extname-dotfiles",
@@ -55,7 +55,7 @@
       "caseName": "extname",
       "inputsToCatch": 5,
       "shrinks": 5,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "swallowed-ext-error",
@@ -64,7 +64,7 @@
       "caseName": "basename",
       "inputsToCatch": 17,
       "shrinks": 3,
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     },
     {
       "id": "relative-ignores-case",
@@ -74,14 +74,14 @@
       "inputsToCatch": 11,
       "shrinks": 5,
       "note": "Survived 100,000 inputs at first: no segment had a capital letter and relative() only saw unrelated pairs. Fixed by adding an \"A\" segment and related path pairs.",
-      "measuredAt": "2026-11-24"
+      "measuredAt": "2026-11-25"
     }
   ],
   "coverage": {
     "lines": 98.1,
     "branches": 99.11,
     "seed": 42,
-    "measuredAt": "2026-11-24",
+    "measuredAt": "2026-11-25",
     "uncovered": [
       "original/index.js:151-154",
       "original/index.js:281-286"

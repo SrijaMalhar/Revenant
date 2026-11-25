@@ -68,6 +68,8 @@ export interface Case<I = unknown> {
   call: (mod: any, input: I) => unknown; // how to invoke the module
   project?: (value: unknown) => unknown; // reduce a result to observable data
   compareErrorClass?: boolean;
+  /** the input never varies (a property like VERSION); one run checks it, so it doesn't pad the count */
+  fixed?: boolean;
   /** inputs in a declared-divergence domain are skipped and counted */
   allow?: (input: I) => boolean;
   /** turns typed text from the Ouija board into an input for this case */

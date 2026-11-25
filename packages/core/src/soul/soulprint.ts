@@ -9,13 +9,14 @@ export const SOULPRINT_N = 10_000;
 
 /**
  * One line per input: JSON.stringify([caseName, canonical(input), outcome]).
+ * A fixed case (no varying input) contributes one line, not n identical ones.
  * Computed once for the original and once for the revived package; equal
  * hashes mean equal behaviour on the same 10,000 inputs per case.
  */
 export function soulprintLines(mod: unknown, cases: Case<any>[], seed = SOULPRINT_SEED, n = SOULPRINT_N): string[] {
   const lines: string[] = [];
   for (const c of cases) {
-    const inputs = fc.sample(c.arbitrary, { seed, numRuns: n });
+    const inputs = fc.sample(c.arbitrary, { seed, numRuns: c.fixed ? 1 : n });
     for (const input of inputs) {
       lines.push(JSON.stringify([c.name, canonical(input), outcome(c, mod, input)]));
     }

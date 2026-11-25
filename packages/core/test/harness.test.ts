@@ -89,6 +89,12 @@ describe('runSoulMatch', () => {
     expect(splitRuns(10, 3)).toEqual([4, 3, 3]);
     expect(splitRuns(100_000, 7).reduce((x, y) => x + y)).toBe(100_000);
   });
+
+  it('gives a fixed case one run, so constants never pad the count', () => {
+    expect(splitRuns(100_000, 5, [false, false, false, false, true])).toEqual([25_000, 25_000, 25_000, 24_999, 1]);
+    expect(splitRuns(10, 3, [true, false, true])).toEqual([1, 8, 1]);
+    expect(splitRuns(100_000, 16, Array.from({ length: 16 }, (_, i) => i >= 12)).reduce((x, y) => x + y)).toBe(100_000);
+  });
 });
 
 describe('soulprint', () => {

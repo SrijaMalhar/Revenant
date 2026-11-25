@@ -22,12 +22,36 @@ export interface RunSoulMatchOptions {
   clock?: () => number;
 }
 
-/** Splits numRuns evenly across cases; the first few get the remainder. */
-export function splitRuns(numRuns: number, n: number): number[] {
+/**
+ * Splits numRuns across cases. A fixed case (no varying input) gets exactly
+ * one run; the rest are split evenly over the cases with real inputs, the
+ * first few getting the remainder. The total is always numRuns.
+ */
+export function splitRuns(numRuns: number, n: number, fixed: boolean[] = []): number[] {
   if (n === 0) return [];
-  const base = Math.floor(numRuns / n);
-  const rest = numRuns - base * n;
-  return Array.from({ length: n }, (_, i) => base + (i < rest ? 1 : 0));
+  const isFixed = (i: number) => fixed[i] === true;
+  const nFixed = Array.from({ length: n }, (_, i) => i).filter(isFixed).length;
+  const varying = n - nFixed;
+  if (varying === 0) {
+    const base = Math.floor(numRuns / n);
+    const rest = numRuns - base * n;
+    return Array.from({ length: n }, (_, i) => base + (i < rest ? 1 : 0));
+  }
+  const fixedRuns = Math.min(nFixed, numRuns);
+  const pool = numRuns - fixedRuns;
+  const base = Math.floor(pool / varying);
+  let rest = pool - base * varying;
+  let fixedLeft = fixedRuns;
+  return Array.from({ length: n }, (_, i) => {
+    if (isFixed(i)) {
+      if (fixedLeft === 0) return 0;
+      fixedLeft--;
+      return 1;
+    }
+    const extra = rest > 0 ? 1 : 0;
+    rest -= extra;
+    return base + extra;
+  });
 }
 
 const PROGRESS_EVERY = 250;
@@ -37,7 +61,7 @@ export function runSoulMatch(opts: RunSoulMatchOptions): SoulMatchRun {
   const started = clock();
   const cases = opts.onlyCase ? opts.cases.filter((c) => c.name === opts.onlyCase) : opts.cases;
   if (opts.onlyCase && cases.length === 0) throw new Error(`No case named "${opts.onlyCase}"`);
-  const shares = splitRuns(opts.numRuns, cases.length);
+  const shares = splitRuns(opts.numRuns, cases.length, cases.map((c) => c.fixed === true));
   const total = shares.reduce((a, b) => a + b, 0);
   const perCase: NonNullable<SoulMatchRun['perCase']> = [];
   let done = 0;
