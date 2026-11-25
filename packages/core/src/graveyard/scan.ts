@@ -1,3 +1,4 @@
+import semver from 'semver';
 import type { GraveNode, GraveyardReport, ScanInput, Vitals } from '../types.ts';
 import { lookupReplacement } from '../e18e/lookup.ts';
 import { parseDepSpec, resolveRange } from './resolve.ts';
@@ -143,7 +144,7 @@ export async function scan(input: ScanInput, deps: ScanDeps): Promise<GraveyardR
   };
 
   // 3. Resolve each direct range the way npm does.
-  const roots: { key: string; dev: boolean }[] = [];
+  const roots: { key: string; dev: boolean; range: string }[] = [];
   await Promise.all(
     direct.map(async (d) => {
       const i = await info(d.name);
@@ -153,7 +154,7 @@ export async function scan(input: ScanInput, deps: ScanDeps): Promise<GraveyardR
         errors.push({ at: d.name, message: `no version satisfies ${d.range}` });
         return;
       }
-      roots.push({ key: key(d.name, version), dev: d.dev });
+      roots.push({ key: key(d.name, version), dev: d.dev, range: d.range });
     }),
   );
   roots.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
@@ -166,14 +167,39 @@ export async function scan(input: ScanInput, deps: ScanDeps): Promise<GraveyardR
     if (!s) children.set(from, (s = new Set()));
     s.add(to);
   };
+  // deps.dev builds graphs some time after a release, so the newest version
+  // can 404 ("dependencies not found") for a while. Then use the newest older
+  // version in the same range that has a graph, and say so in the notes.
+  const graphFor = async (name: string, version: string, range: string) => {
+    try {
+      return { graph: await getGraph(up, name, version), used: version };
+    } catch (e) {
+      if (!(e instanceof UpstreamError && e.status === 404)) throw e;
+      const i = await info(name);
+      const older = semver.rsort((i?.versions ?? []).filter((v) => semver.valid(v) && semver.lt(v, version) && semver.satisfies(v, range))).slice(0, 5);
+      for (const v of older) {
+        try {
+          const graph = await getGraph(up, name, v);
+          errors.push({ at: key(name, version), message: `deps.dev has no dependency graph for this version yet; used ${v}'s graph for its dependencies` });
+          return { graph, used: v };
+        } catch (e2) {
+          if (!(e2 instanceof UpstreamError && e2.status === 404)) throw e2;
+        }
+      }
+      throw e;
+    }
+  };
+
   await Promise.all(
     roots.map(async (r) => {
       const [name, version] = splitKey(r.key);
       ids.set(r.key, { name, version });
       try {
-        const g = await getGraph(up, name, version);
+        const { graph: g, used } = await graphFor(name, version, r.range);
         if (g.error) errors.push({ at: r.key, message: `deps.dev: ${g.error}` });
         const keys = g.nodes.map((n) => {
+          // A fallback graph's own root stands in for the version actually installed.
+          if (used !== version && n.versionKey.name === name && n.versionKey.version === used) return r.key;
           const k = key(n.versionKey.name, n.versionKey.version);
           ids.set(k, { name: n.versionKey.name, version: n.versionKey.version });
           for (const err of n.errors ?? []) errors.push({ at: k, message: `deps.dev: ${err}` });

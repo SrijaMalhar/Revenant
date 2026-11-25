@@ -143,6 +143,26 @@ describe('scan on a linter-shaped tree', () => {
     expect(report.errors.some((e) => e.at === 'natural-compare@1.4.0')).toBe(true);
   });
 
+  it('uses the newest older graph when deps.dev has none for the newest version yet', async () => {
+    // linter 10.15.0 has no graph yet; 10.14.0 does, with the same dependencies.
+    const world: World = {
+      ...linterWorld,
+      packages: {
+        ...linterWorld.packages,
+        linter: {
+          ...linterWorld.packages.linter!,
+          versions: { '10.14.0': linterWorld.packages.linter!.versions['10.15.0']!, ...linterWorld.packages.linter!.versions },
+        },
+      },
+      failures: { [upstreamUrl('depsdev', '/v3/systems/npm/packages/linter/versions/10.15.0:dependencies')]: 404 },
+    };
+    const report = await scan({ kind: 'github', owner: 'demo', repo: 'app' }, deps(world));
+    const tc = report.nodes.find((n) => n.name === 'type-check')!;
+    expect(tc.path).toEqual(['demo-app', 'linter@10.15.0', 'optionator@0.9.4', 'type-check@0.4.0']);
+    expect(report.nodes.some((n) => n.name === 'linter' && n.version === '10.14.0')).toBe(false);
+    expect(report.errors).toContainEqual({ at: 'linter@10.15.0', message: "deps.dev has no dependency graph for this version yet; used 10.14.0's graph for its dependencies" });
+  });
+
   it('retries once after a 429', async () => {
     const responses = responsesFor(linterWorld);
     const url = upstreamUrl('depsdev', '/v3/systems/npm/packages/linter');
