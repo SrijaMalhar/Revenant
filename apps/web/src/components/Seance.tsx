@@ -29,11 +29,11 @@ export function Seance({ d, label, onCopyRegression }: { d: Divergence; label: s
   return (
     <section className="seance" aria-labelledby="seance-h">
       <h2 id="seance-h">{label}</h2>
-      <p className="muted">
-        Case <code>{d.caseName}</code>. fast-check found a failing input and shrank it {d.shrinks} {d.shrinks === 1 ? 'time' : 'times'} to the smallest one that still fails.
+      <p className="prose">
+        Case <code>{d.caseName}</code>. {d.shrinks ? `fast-check found a failing input and shrank it ${d.shrinks} ${d.shrinks === 1 ? 'time' : 'times'} to the smallest one that still fails.` : 'fast-check found a failing input that was already as small as it gets.'}
       </p>
       <div>
-        <p className="small muted" aria-live="off">
+        <p className="caption" aria-live="off">
           {done ? 'Shrunk input' : `Shrinking, step ${i + 1} of ${frames.length}`}
           {!done ? (
             <>
@@ -48,18 +48,18 @@ export function Seance({ d, label, onCopyRegression }: { d: Divergence; label: s
       </div>
       <div className="sides">
         <div className="side">
-          <span className="small muted">Original</span>
+          <span className="side-role">Original</span>
           <pre className="value">{show(d.original)}</pre>
         </div>
         <div className="side candidate">
-          <span className="small muted">Candidate</span>
+          <span className="side-role">Candidate</span>
           <pre className="value">{show(d.candidate)}</pre>
         </div>
       </div>
       <DiffView original={d.original} candidate={d.candidate} />
       {onCopyRegression ? (
         <p>
-          <button type="button" className="quiet" onClick={onCopyRegression}>
+          <button type="button" className="secondary" onClick={onCopyRegression}>
             Copy as a regression test
           </button>
         </p>

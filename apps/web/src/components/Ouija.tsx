@@ -38,13 +38,11 @@ export function Ouija({ pkg, cases }: { pkg: string; cases: CaseInfo[] }) {
   const same = result && 'original' in result && JSON.stringify(result.original) === JSON.stringify(result.revived);
 
   return (
-    <div className="panel">
-      <p className="muted">
-        Try to break it. Pick a function, type an input, and compare the original's answer with the revived one's. Nothing here calls an AI; both packages run in your browser.
-      </p>
-      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'end' }}>
-        <label style={{ display: 'grid', gap: '0.3rem' }}>
-          <span className="small muted">Function</span>
+    <div className="ouija stack">
+      <p className="prose">Try to break it. Pick a function, type an input, and compare the original's answer with the revived one's. Both packages run in your browser.</p>
+      <div className="field-row">
+        <label className="field-label">
+          <span>Function</span>
           <select value={caseName} onChange={(e) => setCaseName(e.target.value)}>
             {usable.map((c) => (
               <option key={c.name}>{c.name}</option>
@@ -52,8 +50,8 @@ export function Ouija({ pkg, cases }: { pkg: string; cases: CaseInfo[] }) {
           </select>
         </label>
       </div>
-      <label style={{ display: 'grid', gap: '0.3rem' }}>
-        <span className="small muted">
+      <label className="field-label">
+        <span>
           Input ({text.length} of {LIMIT} characters){pkg === 'type-check' ? '. Type string on the first line, the value on the next' : ''}
         </span>
         <textarea rows={3} maxLength={LIMIT} value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} />
@@ -64,6 +62,7 @@ export function Ouija({ pkg, cases }: { pkg: string; cases: CaseInfo[] }) {
             <button
               key={ex}
               type="button"
+              className="chip"
               onClick={() => {
                 setText(ex);
                 void ask(ex);
@@ -74,23 +73,23 @@ export function Ouija({ pkg, cases }: { pkg: string; cases: CaseInfo[] }) {
           ))}
         </div>
       ) : null}
-      <div>
-        <button type="button" onClick={() => ask()} disabled={busy || !caseName}>
+      <p className="actions">
+        <button type="button" className="primary" onClick={() => ask()} disabled={busy || !caseName}>
           {busy ? 'Asking…' : 'Ask both'}
         </button>
-      </div>
+      </p>
       <div aria-live="polite">
         {result && 'error' in result ? <p className="error">{result.error}</p> : null}
         {result && 'original' in result ? (
-          <div className="seance" style={{ marginTop: 0 }}>
-            <p className={same ? '' : 'verdict diverged'}>{same ? 'Same answer.' : 'They disagree. You found a divergence.'}</p>
+          <div className="answer stack">
+            <p className={same ? 'verdict same' : 'verdict diverged'}>{same ? 'Same answer.' : 'They disagree. You found a divergence.'}</p>
             <div className="sides">
               <div className="side">
-                <span className="small muted">Original</span>
+                <span className="side-role">Original</span>
                 <pre className="value">{show(result.original)}</pre>
               </div>
               <div className={`side${same ? '' : ' candidate'}`}>
-                <span className="small muted">Revived</span>
+                <span className="side-role">Revived</span>
                 <pre className="value">{show(result.revived)}</pre>
               </div>
             </div>
@@ -101,7 +100,7 @@ export function Ouija({ pkg, cases }: { pkg: string; cases: CaseInfo[] }) {
                   Revenant is meant to be breakable in public. Copy this as a regression test and it becomes a permanent first example on every run.{' '}
                   <button
                     type="button"
-                    className="quiet"
+                    className="secondary"
                     onClick={async () => {
                       await navigator.clipboard.writeText(JSON.stringify({ caseName, input: result.input, recordedAt: new Date().toISOString(), source: 'ouija' }, null, 2));
                       setCopied(true);

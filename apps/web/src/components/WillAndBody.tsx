@@ -38,14 +38,14 @@ function Markdown({ text }: { text: string }) {
   const blocks = text.split(/\n{2,}/);
   const inline = (s: string) => s.split(/(`[^`]+`)/g).map((part, i) => (part.startsWith('`') && part.endsWith('`') ? <code key={i}>{part.slice(1, -1)}</code> : part.replace(/\*\*/g, '')));
   return (
-    <div className="panel" style={{ gap: '0.75rem' }}>
+    <div className="markdown stack">
       {blocks.map((b, i) => {
         const h = /^(#{1,4})\s+(.*)$/.exec(b.trim());
-        if (h) return <h4 key={i} style={{ margin: 0, fontFamily: 'var(--serif)', fontWeight: 400, fontSize: '1.15rem' }}>{inline(h[2]!)}</h4>;
+        if (h) return <h4 key={i}>{inline(h[2]!)}</h4>;
         const lines = b.split('\n');
         if (lines.every((l) => /^\s*([-*]|\d+\.)\s+/.test(l))) {
           return (
-            <ul key={i} style={{ margin: 0, paddingLeft: '1.1rem' }}>
+            <ul key={i} className="list">
               {lines.map((l, j) => (
                 <li key={j}>{inline(l.replace(/^\s*([-*]|\d+\.)\s+/, ''))}</li>
               ))}
