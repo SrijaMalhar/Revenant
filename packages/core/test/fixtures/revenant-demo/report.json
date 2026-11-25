@@ -1,0 +1,3903 @@
+{
+  "input": {
+    "kind": "github",
+    "owner": "SrijaMalhar",
+    "repo": "revenant-demo"
+  },
+  "scannedAt": "2026-11-25T10:08:13.665Z",
+  "root": {
+    "name": "revenant-demo",
+    "deps": 0,
+    "devDeps": 1
+  },
+  "nodes": [
+    {
+      "name": "@cacheable/memory",
+      "version": "2.2.0",
+      "depth": 4,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "@cacheable/memory@2.2.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.2.0",
+        "lastRelease": "2026-06-27T18:19:57Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-07-31T03:16:20Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 10
+          },
+          {
+            "year": 2026,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@cacheable/utils",
+      "version": "2.5.0",
+      "depth": 4,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "@cacheable/utils@2.5.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.5.0",
+        "lastRelease": "2026-06-27T18:19:51Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-07-25T04:45:56Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 13
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.10.1",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint-community/eslint-utils@4.10.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.10.1",
+        "lastRelease": "2026-07-22T19:30:18Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2022-11-20T18:57:08Z",
+        "releasesByYear": [
+          {
+            "year": 2022,
+            "count": 9
+          },
+          {
+            "year": 2023,
+            "count": 4
+          },
+          {
+            "year": 2024,
+            "count": 2
+          },
+          {
+            "year": 2025,
+            "count": 8
+          },
+          {
+            "year": 2026,
+            "count": 6
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint-community/regexpp@4.12.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.12.3",
+        "lastRelease": "2026-11-08T08:41:14Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2022-11-28T01:53:47Z",
+        "releasesByYear": [
+          {
+            "year": 2022,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 17
+          },
+          {
+            "year": 2024,
+            "count": 6
+          },
+          {
+            "year": 2025,
+            "count": 1
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint/config-array",
+      "version": "0.23.5",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/config-array@0.23.5"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.23.6",
+        "lastRelease": "2026-11-13T20:14:49Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-05-30T20:40:32Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 7
+          },
+          {
+            "year": 2025,
+            "count": 7
+          },
+          {
+            "year": 2026,
+            "count": 7
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint/config-helpers",
+      "version": "0.7.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/config-helpers@0.7.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.7.0",
+        "lastRelease": "2026-07-21T08:10:35Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-03-06T21:53:34Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 11
+          },
+          {
+            "year": 2026,
+            "count": 7
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint/core",
+      "version": "1.2.1",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/core@1.2.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.2.1",
+        "lastRelease": "2026-04-08T09:22:28Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-06-26T16:13:31Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 10
+          },
+          {
+            "year": 2025,
+            "count": 11
+          },
+          {
+            "year": 2026,
+            "count": 5
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint/object-schema",
+      "version": "3.0.5",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/config-array@0.23.5",
+        "@eslint/object-schema@3.0.5"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.0.5",
+        "lastRelease": "2026-04-08T09:22:34Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-05-30T20:40:23Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 3
+          },
+          {
+            "year": 2025,
+            "count": 3
+          },
+          {
+            "year": 2026,
+            "count": 5
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@eslint/plugin-kit",
+      "version": "0.7.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/plugin-kit@0.7.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.7.3",
+        "lastRelease": "2026-09-03T18:10:03Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-08-27T13:59:04Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 6
+          },
+          {
+            "year": 2025,
+            "count": 12
+          },
+          {
+            "year": 2026,
+            "count": 7
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@humanfs/core",
+      "version": "0.19.2",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@humanfs/node@0.16.8",
+        "@humanfs/core@0.19.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.20.0",
+        "lastRelease": "2026-09-10T12:48:22Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-01-30T00:34:31Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 18
+          },
+          {
+            "year": 2026,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@humanfs/node",
+      "version": "0.16.8",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@humanfs/node@0.16.8"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.17.0",
+        "lastRelease": "2026-09-10T12:49:38Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-01-30T00:34:36Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 17
+          },
+          {
+            "year": 2025,
+            "count": 1
+          },
+          {
+            "year": 2026,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@humanfs/types",
+      "version": "0.15.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@humanfs/node@0.16.8",
+        "@humanfs/types@0.15.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.16.0",
+        "lastRelease": "2026-09-10T12:50:29Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-01-30T00:34:55Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 11
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@humanwhocodes/module-importer",
+      "version": "1.0.1",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@humanwhocodes/module-importer@1.0.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.0.1",
+        "lastRelease": "2022-08-18T17:55:51Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 181898005,
+        "advisories": [],
+        "firstRelease": "2022-08-17T19:24:18Z",
+        "releasesByYear": [
+          {
+            "year": 2022,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "@humanwhocodes/retry",
+      "version": "0.4.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@humanwhocodes/retry@0.4.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.4.3",
+        "lastRelease": "2025-05-07T14:25:57Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-01-17T00:18:36Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 13
+          },
+          {
+            "year": 2025,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@keyv/bigmap",
+      "version": "1.3.1",
+      "depth": 5,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "@cacheable/memory@2.2.0",
+        "@keyv/bigmap@1.3.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "6.1.0",
+        "lastRelease": "2026-10-06T22:54:04Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-07-19T19:03:08Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 7
+          },
+          {
+            "year": 2026,
+            "count": 8
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@keyv/serialize",
+      "version": "1.1.1",
+      "depth": 5,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "keyv@5.6.0",
+        "@keyv/serialize@1.1.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.1.1",
+        "lastRelease": "2026-03-04T03:02:26Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-08-20T23:23:55Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 3
+          },
+          {
+            "year": 2025,
+            "count": 3
+          },
+          {
+            "year": 2026,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@types/esrecurse",
+      "version": "4.3.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "eslint-scope@9.1.2",
+        "@types/esrecurse@4.3.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.3.1",
+        "lastRelease": "2025-07-19T03:47:09Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-05-07T18:39:12Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@types/estree",
+      "version": "1.0.10",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@types/estree@1.0.10"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.0.11",
+        "lastRelease": "2026-11-25T04:05:12Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2016-05-17T04:52:04Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 16
+          },
+          {
+            "year": 2017,
+            "count": 4
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 4
+          },
+          {
+            "year": 2021,
+            "count": 5
+          },
+          {
+            "year": 2022,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 5
+          },
+          {
+            "year": 2024,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/core@1.2.1",
+        "@types/json-schema@7.0.15"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.15",
+        "lastRelease": "2023-11-07T08:49:23Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 212591116,
+        "advisories": [],
+        "firstRelease": "2017-04-18T15:08:04Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 3
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 2
+          },
+          {
+            "year": 2023,
+            "count": 4
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "acorn",
+      "version": "8.19.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "espree@11.2.0",
+        "acorn@8.19.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "8.19.0",
+        "lastRelease": "2026-10-05T12:51:20Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2012-09-24T10:10:52Z",
+        "releasesByYear": [
+          {
+            "year": 2012,
+            "count": 1
+          },
+          {
+            "year": 2013,
+            "count": 6
+          },
+          {
+            "year": 2014,
+            "count": 7
+          },
+          {
+            "year": 2015,
+            "count": 20
+          },
+          {
+            "year": 2016,
+            "count": 12
+          },
+          {
+            "year": 2017,
+            "count": 18
+          },
+          {
+            "year": 2018,
+            "count": 18
+          },
+          {
+            "year": 2019,
+            "count": 11
+          },
+          {
+            "year": 2020,
+            "count": 14
+          },
+          {
+            "year": 2021,
+            "count": 14
+          },
+          {
+            "year": 2022,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 7
+          },
+          {
+            "year": 2024,
+            "count": 4
+          },
+          {
+            "year": 2025,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "acorn-jsx",
+      "version": "5.3.2",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "espree@11.2.0",
+        "acorn-jsx@5.3.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.3.2",
+        "lastRelease": "2021-07-09T01:15:57Z",
+        "maintainers": 3,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 198959792,
+        "advisories": [],
+        "firstRelease": "2014-07-11T07:44:05Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 13
+          },
+          {
+            "year": 2015,
+            "count": 11
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2017,
+            "count": 3
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "ajv",
+      "version": "6.15.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ajv@6.15.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "8.20.0",
+        "lastRelease": "2026-04-24T15:22:16Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2015-05-29T22:33:14Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 135
+          },
+          {
+            "year": 2016,
+            "count": 76
+          },
+          {
+            "year": 2017,
+            "count": 44
+          },
+          {
+            "year": 2018,
+            "count": 17
+          },
+          {
+            "year": 2019,
+            "count": 9
+          },
+          {
+            "year": 2020,
+            "count": 29
+          },
+          {
+            "year": 2021,
+            "count": 34
+          },
+          {
+            "year": 2022,
+            "count": 5
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 5
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.4",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "minimatch@10.2.6",
+        "brace-expansion@5.0.12",
+        "balanced-match@4.0.4"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.0.0",
+        "lastRelease": "2026-10-16T17:24:59Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-10-13T12:26:03Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 1
+          },
+          {
+            "year": 2014,
+            "count": 3
+          },
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.12",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "minimatch@10.2.6",
+        "brace-expansion@5.0.12"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.1.0",
+        "lastRelease": "2026-11-23T15:56:32Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-10-13T12:58:50Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 1
+          },
+          {
+            "year": 2014,
+            "count": 3
+          },
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2016,
+            "count": 4
+          },
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 4
+          },
+          {
+            "year": 2026,
+            "count": 42
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "cacheable",
+      "version": "2.5.0",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.5.0",
+        "lastRelease": "2026-06-27T18:20:16Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2014-02-23T05:05:50Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 6
+          },
+          {
+            "year": 2024,
+            "count": 18
+          },
+          {
+            "year": 2025,
+            "count": 18
+          },
+          {
+            "year": 2026,
+            "count": 5
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "cross-spawn",
+      "version": "7.0.6",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.6",
+        "lastRelease": "2024-11-18T14:21:34Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2014-06-30T01:04:42Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 12
+          },
+          {
+            "year": 2015,
+            "count": 17
+          },
+          {
+            "year": 2016,
+            "count": 14
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2018,
+            "count": 6
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2024,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": {
+        "manifest": "preferred",
+        "replacements": [
+          "tinyexec"
+        ]
+      }
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "debug@4.4.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.4.3",
+        "lastRelease": "2025-09-13T17:25:19Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2011-11-29T01:11:25Z",
+        "releasesByYear": [
+          {
+            "year": 2011,
+            "count": 2
+          },
+          {
+            "year": 2012,
+            "count": 7
+          },
+          {
+            "year": 2013,
+            "count": 4
+          },
+          {
+            "year": 2014,
+            "count": 10
+          },
+          {
+            "year": 2015,
+            "count": 3
+          },
+          {
+            "year": 2016,
+            "count": 14
+          },
+          {
+            "year": 2017,
+            "count": 13
+          },
+          {
+            "year": 2018,
+            "count": 11
+          },
+          {
+            "year": 2020,
+            "count": 5
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2022,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 4
+          },
+          {
+            "year": 2025,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": {
+        "manifest": "preferred",
+        "replacements": [
+          "obug"
+        ]
+      }
+    },
+    {
+      "name": "deep-is",
+      "version": "0.1.4",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4",
+        "deep-is@0.1.4"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.1.4",
+        "lastRelease": "2021-09-04T16:55:20Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 193476982,
+        "advisories": [],
+        "firstRelease": "2013-04-11T02:12:50Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 3
+          },
+          {
+            "year": 2014,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "escape-string-regexp",
+      "version": "4.0.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "escape-string-regexp@4.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.0.0",
+        "lastRelease": "2021-04-17T15:45:50Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 514088543,
+        "advisories": [],
+        "firstRelease": "2014-06-24T15:06:23Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 3
+          },
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2016,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": {
+        "manifest": "native",
+        "replacements": [
+          "RegExp.escape"
+        ]
+      }
+    },
+    {
+      "name": "eslint",
+      "version": "10.15.0",
+      "depth": 0,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "10.15.0",
+        "lastRelease": "2026-11-13T21:33:34Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-07-04T17:01:31Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 10
+          },
+          {
+            "year": 2014,
+            "count": 31
+          },
+          {
+            "year": 2015,
+            "count": 50
+          },
+          {
+            "year": 2016,
+            "count": 53
+          },
+          {
+            "year": 2017,
+            "count": 38
+          },
+          {
+            "year": 2018,
+            "count": 29
+          },
+          {
+            "year": 2019,
+            "count": 29
+          },
+          {
+            "year": 2020,
+            "count": 25
+          },
+          {
+            "year": 2021,
+            "count": 29
+          },
+          {
+            "year": 2022,
+            "count": 26
+          },
+          {
+            "year": 2023,
+            "count": 26
+          },
+          {
+            "year": 2024,
+            "count": 29
+          },
+          {
+            "year": 2025,
+            "count": 30
+          },
+          {
+            "year": 2026,
+            "count": 29
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "eslint-scope",
+      "version": "9.1.2",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "eslint-scope@9.1.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "9.1.2",
+        "lastRelease": "2026-03-06T22:32:49Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2017-03-17T22:10:11Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2018,
+            "count": 4
+          },
+          {
+            "year": 2019,
+            "count": 4
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 3
+          },
+          {
+            "year": 2024,
+            "count": 5
+          },
+          {
+            "year": 2025,
+            "count": 3
+          },
+          {
+            "year": 2026,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint-community/eslint-utils@4.10.1",
+        "eslint-visitor-keys@3.4.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.0.1",
+        "lastRelease": "2026-02-20T14:40:47Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2017-11-17T08:52:53Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 2
+          },
+          {
+            "year": 2023,
+            "count": 4
+          },
+          {
+            "year": 2024,
+            "count": 3
+          },
+          {
+            "year": 2025,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "5.0.1",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "eslint-visitor-keys@5.0.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.0.1",
+        "lastRelease": "2026-02-20T14:40:47Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2017-11-17T08:52:53Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 2
+          },
+          {
+            "year": 2023,
+            "count": 4
+          },
+          {
+            "year": 2024,
+            "count": 3
+          },
+          {
+            "year": 2025,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "espree",
+      "version": "11.2.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "espree@11.2.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "11.2.0",
+        "lastRelease": "2026-03-06T22:32:40Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2014-12-06T03:10:12Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 5
+          },
+          {
+            "year": 2015,
+            "count": 28
+          },
+          {
+            "year": 2016,
+            "count": 15
+          },
+          {
+            "year": 2017,
+            "count": 7
+          },
+          {
+            "year": 2018,
+            "count": 8
+          },
+          {
+            "year": 2019,
+            "count": 6
+          },
+          {
+            "year": 2020,
+            "count": 7
+          },
+          {
+            "year": 2021,
+            "count": 7
+          },
+          {
+            "year": 2022,
+            "count": 5
+          },
+          {
+            "year": 2023,
+            "count": 5
+          },
+          {
+            "year": 2024,
+            "count": 5
+          },
+          {
+            "year": 2025,
+            "count": 2
+          },
+          {
+            "year": 2026,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "esquery",
+      "version": "1.7.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "esquery@1.7.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.7.0",
+        "lastRelease": "2025-12-31T15:44:57Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-07-24T00:20:04Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 4
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 5
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 3
+          },
+          {
+            "year": 2024,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "eslint-scope@9.1.2",
+        "esrecurse@4.3.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.3.0",
+        "lastRelease": "2020-08-31T18:21:44Z",
+        "maintainers": 3,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 198889948,
+        "advisories": [],
+        "firstRelease": "2014-12-02T11:53:32Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 4
+          },
+          {
+            "year": 2015,
+            "count": 4
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "estraverse",
+      "version": "5.3.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "eslint-scope@9.1.2",
+        "estraverse@5.3.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.3.0",
+        "lastRelease": "2021-10-25T12:18:17Z",
+        "maintainers": 3,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 298666336,
+        "advisories": [],
+        "firstRelease": "2012-10-09T18:22:13Z",
+        "releasesByYear": [
+          {
+            "year": 2012,
+            "count": 3
+          },
+          {
+            "year": 2013,
+            "count": 11
+          },
+          {
+            "year": 2014,
+            "count": 7
+          },
+          {
+            "year": 2015,
+            "count": 7
+          },
+          {
+            "year": 2016,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "esutils",
+      "version": "2.0.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "esutils@2.0.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.0.3",
+        "lastRelease": "2019-07-31T01:10:54Z",
+        "maintainers": 2,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 219519738,
+        "advisories": [],
+        "firstRelease": "2013-11-25T07:21:07Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 1
+          },
+          {
+            "year": 2014,
+            "count": 8
+          },
+          {
+            "year": 2015,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "fast-deep-equal@3.1.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.1.3",
+        "lastRelease": "2020-06-08T07:27:28Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 314110849,
+        "advisories": [],
+        "firstRelease": "2017-06-15T22:26:29Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 3
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 7
+          },
+          {
+            "year": 2020,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "fast-json-stable-stringify",
+      "version": "2.1.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ajv@6.15.0",
+        "fast-json-stable-stringify@2.1.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.1.0",
+        "lastRelease": "2019-12-14T16:17:57Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 218554432,
+        "advisories": [],
+        "firstRelease": "2017-10-24T09:21:39Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "fast-levenshtein",
+      "version": "2.0.6",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4",
+        "fast-levenshtein@2.0.6"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.0.0",
+        "lastRelease": "2020-07-22T14:26:22Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 197790336,
+        "advisories": [],
+        "firstRelease": "2013-04-18T05:57:15Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 1
+          },
+          {
+            "year": 2014,
+            "count": 6
+          },
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2016,
+            "count": 10
+          },
+          {
+            "year": 2020,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "file-entry-cache",
+      "version": "11.1.5",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "11.1.5",
+        "lastRelease": "2026-06-27T18:20:33Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2015-03-02T09:30:04Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 6
+          },
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 3
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 4
+          },
+          {
+            "year": 2024,
+            "count": 8
+          },
+          {
+            "year": 2025,
+            "count": 15
+          },
+          {
+            "year": 2026,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "find-up",
+      "version": "5.0.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "8.0.0",
+        "lastRelease": "2025-09-16T01:13:57Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2015-09-01T07:15:16Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2016,
+            "count": 4
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": {
+        "manifest": "preferred",
+        "replacements": [
+          "empathic",
+          "pkg-types"
+        ]
+      }
+    },
+    {
+      "name": "flat-cache",
+      "version": "6.1.23",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "6.1.23",
+        "lastRelease": "2026-06-27T18:20:27Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2015-02-26T12:20:02Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 10
+          },
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 4
+          },
+          {
+            "year": 2023,
+            "count": 4
+          },
+          {
+            "year": 2024,
+            "count": 9
+          },
+          {
+            "year": 2025,
+            "count": 12
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "flatted",
+      "version": "3.4.4",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "flatted@3.4.4"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.4.4",
+        "lastRelease": "2026-07-30T09:53:10Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2018-04-26T09:50:37Z",
+        "releasesByYear": [
+          {
+            "year": 2018,
+            "count": 10
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 8
+          },
+          {
+            "year": 2021,
+            "count": 6
+          },
+          {
+            "year": 2022,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 2
+          },
+          {
+            "year": 2024,
+            "count": 7
+          },
+          {
+            "year": 2025,
+            "count": 1
+          },
+          {
+            "year": 2026,
+            "count": 6
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "glob-parent",
+      "version": "6.0.2",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "glob-parent@6.0.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.0",
+        "lastRelease": "2026-11-17T22:13:50Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2015-01-12T20:32:54Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 5
+          },
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2019,
+            "count": 3
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 4
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "hashery",
+      "version": "1.5.1",
+      "depth": 5,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "@cacheable/utils@2.5.0",
+        "hashery@1.5.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.0.6",
+        "lastRelease": "2026-11-13T17:24:12Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2025-11-12T08:41:15Z",
+        "releasesByYear": [
+          {
+            "year": 2025,
+            "count": 5
+          },
+          {
+            "year": 2026,
+            "count": 10
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "hookified",
+      "version": "1.15.1",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "hookified@1.15.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.2.0",
+        "lastRelease": "2026-11-22T00:21:08Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-09-03T15:36:32Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 14
+          },
+          {
+            "year": 2025,
+            "count": 14
+          },
+          {
+            "year": 2026,
+            "count": 14
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "hookified",
+      "version": "2.2.0",
+      "depth": 5,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "qified@0.10.1",
+        "hookified@2.2.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "3.2.0",
+        "lastRelease": "2026-11-22T00:21:08Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-09-03T15:36:32Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 14
+          },
+          {
+            "year": 2025,
+            "count": 14
+          },
+          {
+            "year": 2026,
+            "count": 14
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "ignore",
+      "version": "5.3.2",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ignore@5.3.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.16",
+        "lastRelease": "2026-11-17T05:56:55Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-09-02T07:32:13Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 6
+          },
+          {
+            "year": 2014,
+            "count": 7
+          },
+          {
+            "year": 2015,
+            "count": 4
+          },
+          {
+            "year": 2016,
+            "count": 22
+          },
+          {
+            "year": 2017,
+            "count": 15
+          },
+          {
+            "year": 2018,
+            "count": 15
+          },
+          {
+            "year": 2019,
+            "count": 7
+          },
+          {
+            "year": 2020,
+            "count": 4
+          },
+          {
+            "year": 2021,
+            "count": 2
+          },
+          {
+            "year": 2022,
+            "count": 4
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 6
+          },
+          {
+            "year": 2025,
+            "count": 5
+          },
+          {
+            "year": 2026,
+            "count": 10
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "imurmurhash",
+      "version": "0.1.4",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "imurmurhash@0.1.4"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.1.4",
+        "lastRelease": "2013-08-24T20:45:23Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 214165578,
+        "advisories": [],
+        "firstRelease": "2013-07-31T23:41:37Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 5
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "is-glob@4.0.3",
+        "is-extglob@2.1.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.1.1",
+        "lastRelease": "2016-12-11T04:04:24Z",
+        "maintainers": 2,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 254459012,
+        "advisories": [],
+        "firstRelease": "2015-03-06T21:00:23Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 3
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "is-glob",
+      "version": "4.0.3",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "is-glob@4.0.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.0.3",
+        "lastRelease": "2021-09-29T16:52:47Z",
+        "maintainers": 3,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 264185078,
+        "advisories": [],
+        "firstRelease": "2014-12-18T10:42:32Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 3
+          },
+          {
+            "year": 2015,
+            "count": 7
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "isexe",
+      "version": "2.0.0",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6",
+        "which@2.0.2",
+        "isexe@2.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.0.0",
+        "lastRelease": "2026-02-09T16:28:02Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2016-01-17T05:25:47Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 5
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 3
+          },
+          {
+            "year": 2026,
+            "count": 5
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "json-schema-traverse",
+      "version": "0.4.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ajv@6.15.0",
+        "json-schema-traverse@0.4.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.0.0",
+        "lastRelease": "2020-12-13T10:56:54Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 484994878,
+        "advisories": [],
+        "firstRelease": "2017-06-04T18:42:17Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 5
+          },
+          {
+            "year": 2018,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "json-stable-stringify-without-jsonify",
+      "version": "1.0.1",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "json-stable-stringify-without-jsonify@1.0.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.0.1",
+        "lastRelease": "2016-12-15T22:00:35Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 187732107,
+        "advisories": [],
+        "firstRelease": "2016-12-15T22:00:35Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "keyv",
+      "version": "5.6.0",
+      "depth": 4,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "keyv@5.6.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "6.1.0",
+        "lastRelease": "2026-10-06T22:49:46Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2017-07-07T13:43:26Z",
+        "releasesByYear": [
+          {
+            "year": 2017,
+            "count": 24
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2022,
+            "count": 20
+          },
+          {
+            "year": 2023,
+            "count": 2
+          },
+          {
+            "year": 2024,
+            "count": 13
+          },
+          {
+            "year": 2025,
+            "count": 12
+          },
+          {
+            "year": 2026,
+            "count": 9
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "levn",
+      "version": "0.4.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "@eslint/plugin-kit@0.7.3",
+        "levn@0.4.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.4.1",
+        "lastRelease": "2020-04-04T02:05:31Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 199431898,
+        "advisories": [],
+        "firstRelease": "2013-10-04T20:10:35Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 3
+          },
+          {
+            "year": 2014,
+            "count": 4
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "locate-path",
+      "version": "6.0.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0",
+        "locate-path@6.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "8.0.0",
+        "lastRelease": "2025-09-15T23:17:38Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2016-11-20T10:27:29Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2022,
+            "count": 2
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.6",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "minimatch@10.2.6"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "11.0.9",
+        "lastRelease": "2026-11-16T21:52:08Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2011-07-16T08:52:46Z",
+        "releasesByYear": [
+          {
+            "year": 2011,
+            "count": 5
+          },
+          {
+            "year": 2012,
+            "count": 13
+          },
+          {
+            "year": 2013,
+            "count": 5
+          },
+          {
+            "year": 2014,
+            "count": 5
+          },
+          {
+            "year": 2015,
+            "count": 10
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2022,
+            "count": 17
+          },
+          {
+            "year": 2023,
+            "count": 48
+          },
+          {
+            "year": 2024,
+            "count": 4
+          },
+          {
+            "year": 2025,
+            "count": 4
+          },
+          {
+            "year": 2026,
+            "count": 41
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "debug@4.4.3",
+        "ms@2.1.3"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.1.3",
+        "lastRelease": "2025-08-27T14:00:01Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2011-12-21T19:38:26Z",
+        "releasesByYear": [
+          {
+            "year": 2011,
+            "count": 1
+          },
+          {
+            "year": 2012,
+            "count": 4
+          },
+          {
+            "year": 2013,
+            "count": 4
+          },
+          {
+            "year": 2014,
+            "count": 1
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 1
+          },
+          {
+            "year": 2017,
+            "count": 5
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 5
+          },
+          {
+            "year": 2025,
+            "count": 8
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "natural-compare",
+      "version": "1.4.0",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "natural-compare@1.4.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.4.0",
+        "lastRelease": "2016-07-22T20:48:12Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 197550703,
+        "advisories": [],
+        "firstRelease": "2014-11-18T01:04:27Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "optionator",
+      "version": "0.9.4",
+      "depth": 1,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.9.4",
+        "lastRelease": "2024-04-26T22:17:51Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2013-11-02T01:40:13Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 2
+          },
+          {
+            "year": 2014,
+            "count": 6
+          },
+          {
+            "year": 2015,
+            "count": 4
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2023,
+            "count": 2
+          },
+          {
+            "year": 2024,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "p-limit",
+      "version": "3.1.0",
+      "depth": 4,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0",
+        "locate-path@6.0.0",
+        "p-locate@5.0.0",
+        "p-limit@3.1.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.3.3",
+        "lastRelease": "2026-09-18T18:27:54Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2016-10-21T07:59:41Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2018,
+            "count": 4
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 6
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 3
+          },
+          {
+            "year": 2025,
+            "count": 4
+          },
+          {
+            "year": 2026,
+            "count": 4
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "p-locate",
+      "version": "5.0.0",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0",
+        "locate-path@6.0.0",
+        "p-locate@5.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.0",
+        "lastRelease": "2026-02-03T07:57:49Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2016-11-20T10:07:34Z",
+        "releasesByYear": [
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 2
+          },
+          {
+            "year": 2020,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2026,
+            "count": 1
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "path-exists",
+      "version": "4.0.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0",
+        "path-exists@4.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "5.0.0",
+        "lastRelease": "2021-08-12T10:43:19Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 316324149,
+        "advisories": [],
+        "firstRelease": "2015-05-02T22:43:43Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 3
+          },
+          {
+            "year": 2016,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": {
+        "manifest": "preferred",
+        "replacements": [
+          "fs.promises.access",
+          "fs.existsSync",
+          "Bun.file"
+        ]
+      }
+    },
+    {
+      "name": "path-key",
+      "version": "3.1.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6",
+        "path-key@3.1.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.0.0",
+        "lastRelease": "2021-04-09T12:04:51Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 431317813,
+        "advisories": [],
+        "firstRelease": "2015-12-28T18:36:51Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 3
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": {
+        "manifest": "micro-utilities",
+        "replacements": [
+          "path-key"
+        ]
+      }
+    },
+    {
+      "name": "prelude-ls",
+      "version": "1.2.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4",
+        "prelude-ls@1.2.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.2.1",
+        "lastRelease": "2020-04-02T22:53:40Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 199453405,
+        "advisories": [],
+        "firstRelease": "2012-05-29T01:19:17Z",
+        "releasesByYear": [
+          {
+            "year": 2012,
+            "count": 5
+          },
+          {
+            "year": 2013,
+            "count": 4
+          },
+          {
+            "year": 2014,
+            "count": 2
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "punycode",
+      "version": "2.3.1",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ajv@6.15.0",
+        "uri-js@4.4.1",
+        "punycode@2.3.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.3.1",
+        "lastRelease": "2023-10-30T18:28:32Z",
+        "maintainers": 2,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 305895064,
+        "advisories": [],
+        "firstRelease": "2011-09-07T03:53:54Z",
+        "releasesByYear": [
+          {
+            "year": 2011,
+            "count": 9
+          },
+          {
+            "year": 2012,
+            "count": 5
+          },
+          {
+            "year": 2013,
+            "count": 3
+          },
+          {
+            "year": 2014,
+            "count": 4
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 3
+          },
+          {
+            "year": 2017,
+            "count": 1
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 4
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "qified",
+      "version": "0.10.1",
+      "depth": 4,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "file-entry-cache@11.1.5",
+        "flat-cache@6.1.23",
+        "cacheable@2.5.0",
+        "qified@0.10.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.13.3",
+        "lastRelease": "2026-11-16T23:20:09Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2024-09-17T16:26:25Z",
+        "releasesByYear": [
+          {
+            "year": 2024,
+            "count": 2
+          },
+          {
+            "year": 2025,
+            "count": 13
+          },
+          {
+            "year": 2026,
+            "count": 12
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "shebang-command",
+      "version": "2.0.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6",
+        "shebang-command@2.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "2.0.0",
+        "lastRelease": "2019-09-06T14:53:25Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 348657837,
+        "advisories": [],
+        "firstRelease": "2015-12-04T12:34:38Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2016,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "shebang-regex",
+      "version": "3.0.0",
+      "depth": 3,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6",
+        "shebang-command@2.0.0",
+        "shebang-regex@3.0.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.0.0",
+        "lastRelease": "2021-08-13T23:09:49Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 348181409,
+        "advisories": [],
+        "firstRelease": "2015-02-17T05:24:58Z",
+        "releasesByYear": [
+          {
+            "year": 2015,
+            "count": 2
+          },
+          {
+            "year": 2019,
+            "count": 1
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": {
+        "manifest": "micro-utilities",
+        "replacements": [
+          "shebang-regex"
+        ]
+      }
+    },
+    {
+      "name": "type-check",
+      "version": "0.4.0",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4",
+        "type-check@0.4.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "0.4.0",
+        "lastRelease": "2020-04-03T03:02:37Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 199418512,
+        "advisories": [],
+        "firstRelease": "2013-09-29T18:38:30Z",
+        "releasesByYear": [
+          {
+            "year": 2013,
+            "count": 3
+          },
+          {
+            "year": 2014,
+            "count": 1
+          },
+          {
+            "year": 2015,
+            "count": 1
+          },
+          {
+            "year": 2020,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "uri-js",
+      "version": "4.4.1",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "ajv@6.15.0",
+        "uri-js@4.4.1"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "4.4.1",
+        "lastRelease": "2021-01-10T00:43:12Z",
+        "maintainers": 1,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 211334786,
+        "advisories": [],
+        "firstRelease": "2012-03-13T19:38:35Z",
+        "releasesByYear": [
+          {
+            "year": 2012,
+            "count": 2
+          },
+          {
+            "year": 2015,
+            "count": 3
+          },
+          {
+            "year": 2017,
+            "count": 3
+          },
+          {
+            "year": 2018,
+            "count": 3
+          },
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2021,
+            "count": 1
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": {
+        "manifest": "preferred",
+        "replacements": [
+          "URL",
+          "uri-js-replace",
+          "fast-uri"
+        ]
+      }
+    },
+    {
+      "name": "which",
+      "version": "2.0.2",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "cross-spawn@7.0.6",
+        "which@2.0.2"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "7.0.0",
+        "lastRelease": "2026-05-08T18:30:58Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2011-08-07T18:36:17Z",
+        "releasesByYear": [
+          {
+            "year": 2011,
+            "count": 3
+          },
+          {
+            "year": 2012,
+            "count": 2
+          },
+          {
+            "year": 2014,
+            "count": 3
+          },
+          {
+            "year": 2015,
+            "count": 6
+          },
+          {
+            "year": 2016,
+            "count": 9
+          },
+          {
+            "year": 2017,
+            "count": 3
+          },
+          {
+            "year": 2018,
+            "count": 1
+          },
+          {
+            "year": 2019,
+            "count": 3
+          },
+          {
+            "year": 2022,
+            "count": 1
+          },
+          {
+            "year": 2023,
+            "count": 2
+          },
+          {
+            "year": 2024,
+            "count": 1
+          },
+          {
+            "year": 2025,
+            "count": 1
+          },
+          {
+            "year": 2026,
+            "count": 2
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    },
+    {
+      "name": "word-wrap",
+      "version": "1.2.5",
+      "depth": 2,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "optionator@0.9.4",
+        "word-wrap@1.2.5"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.2.5",
+        "lastRelease": "2023-07-22T14:37:38Z",
+        "maintainers": 2,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": 186063813,
+        "advisories": [],
+        "firstRelease": "2014-03-30T08:47:04Z",
+        "releasesByYear": [
+          {
+            "year": 2014,
+            "count": 7
+          },
+          {
+            "year": 2015,
+            "count": 4
+          },
+          {
+            "year": 2016,
+            "count": 1
+          },
+          {
+            "year": 2017,
+            "count": 3
+          },
+          {
+            "year": 2023,
+            "count": 2
+          }
+        ]
+      },
+      "dead": true,
+      "replacement": null
+    },
+    {
+      "name": "yocto-queue",
+      "version": "0.1.0",
+      "depth": 5,
+      "path": [
+        "revenant-demo",
+        "eslint@10.15.0",
+        "find-up@5.0.0",
+        "locate-path@6.0.0",
+        "p-locate@5.0.0",
+        "p-limit@3.1.0",
+        "yocto-queue@0.1.0"
+      ],
+      "dev": true,
+      "vitals": {
+        "latestVersion": "1.2.2",
+        "lastRelease": "2025-11-11T06:32:08Z",
+        "maintainers": null,
+        "deprecated": null,
+        "installScripts": false,
+        "weeklyDownloads": null,
+        "advisories": [],
+        "firstRelease": "2020-11-24T05:59:48Z",
+        "releasesByYear": [
+          {
+            "year": 2020,
+            "count": 2
+          },
+          {
+            "year": 2021,
+            "count": 1
+          },
+          {
+            "year": 2024,
+            "count": 2
+          },
+          {
+            "year": 2025,
+            "count": 3
+          }
+        ]
+      },
+      "dead": false,
+      "replacement": null
+    }
+  ],
+  "errors": [
+    {
+      "at": "eslint@10.15.0",
+      "message": "deps.dev has no dependency graph for this version yet; used 10.14.0's graph for its dependencies"
+    }
+  ],
+  "truncated": false,
+  "source": "live"
+}
