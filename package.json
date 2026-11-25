@@ -28,6 +28,7 @@
     "exorcism": "tsx scripts/exorcism.ts",
     "e18e": "tsx scripts/build-e18e.ts",
     "possessions": "tsx scripts/possessions.ts",
+    "released": "tsx scripts/released.ts",
     "redos": "tsx scripts/redos.ts",
     "coverage": "tsx scripts/coverage.ts",
     "receipt": "tsx scripts/receipt.ts",

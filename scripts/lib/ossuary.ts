@@ -31,6 +31,7 @@ const ORDER: (keyof OssuaryManifest)[] = [
   'integrity',
   'license',
   'author',
+  'released',
   'main',
   'cases',
   'divergences',

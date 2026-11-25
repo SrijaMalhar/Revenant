@@ -4,6 +4,12 @@
   "integrity": "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==",
   "license": "MIT",
   "author": "James Halliday",
+  "released": {
+    "first": "2013-12-03T19:48:37.866Z",
+    "last": "2020-03-03T16:52:38.480Z",
+    "source": "registry.npmjs.org",
+    "checkedAt": "2026-11-25"
+  },
   "main": "index.js",
   "cases": [
     "resolve",

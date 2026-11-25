@@ -4,6 +4,12 @@
   "integrity": "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==",
   "license": "MIT",
   "author": "George Zahariev",
+  "released": {
+    "first": "2013-09-29T18:38:30.708Z",
+    "last": "2020-04-03T03:02:37.249Z",
+    "source": "registry.npmjs.org",
+    "checkedAt": "2026-11-25"
+  },
   "main": "lib/index.js",
   "cases": [
     "parseType",

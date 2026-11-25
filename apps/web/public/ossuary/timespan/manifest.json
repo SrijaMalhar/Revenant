@@ -4,6 +4,12 @@
   "integrity": "sha512-0Jq9+58T2wbOyLth0EU+AUb6JMGCLaTWIykJFa7hyAybjVH9gpVMTfUAwo5fWAvtFt2Tjh/Elg8JtgNpnMnM8g==",
   "license": "MIT",
   "author": "Michael Stum",
+  "released": {
+    "first": "2011-02-14T02:11:37.940Z",
+    "last": "2013-10-08T18:16:38.703Z",
+    "source": "registry.npmjs.org",
+    "checkedAt": "2026-11-25"
+  },
   "main": "lib/time-span.js",
   "cases": [
     "fromMilliseconds",

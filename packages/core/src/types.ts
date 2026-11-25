@@ -125,6 +125,7 @@ export interface OssuaryManifest {
   integrity: string; // dist.integrity from the registry
   license: string;
   author: string;
+  released?: { first: string; last: string; source: string; checkedAt: string }; // from the npm registry, npm run released
   main?: string; // entry inside original/
   cases: string[]; // case names exported by cases.ts
   divergences: { id: string; description: string; test: string }[];
