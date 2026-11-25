@@ -1,0 +1,62 @@
+/*
+ * Revenant's design tokens. Components use only these variables, never raw
+ * hex values. Every text color passes WCAG AA (4.5:1) on --bg and --bg-raised.
+ */
+:root {
+  color-scheme: dark;
+
+  /* ground */
+  --bg: #0e0f0d; /* near-black with a trace of moss */
+  --bg-raised: #161814; /* tombstones, drawers */
+  --bg-sunken: #0a0b09; /* inputs, code */
+  --line: #262923; /* hairlines, the ground line */
+  --line-strong: #3a3e36; /* borders on hover and focus */
+
+  /* text: 16.4, 10.7 and 5.0 to 1 on --bg */
+  --text-strong: #eceee6; /* headings, names */
+  --text: #bfc3b8; /* body */
+  --text-muted: #7e8378; /* dates, captions */
+
+  /* meaning */
+  --alive: #7fb069; /* revived, same soul, links. 7.6:1 */
+  --warn: #c9a24a; /* Zombie Index 40-59. 8.0:1 */
+  --dead: #d9734e; /* divergence, ReDoS, Zombie Index 60+. 6.0:1 */
+
+  /* fonts */
+  --font-engraved: 'IM Fell English', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* type scale: size / line height */
+  --text-xs: 12px; /* mono: dates, axis labels, chips */
+  --leading-xs: 16px;
+  --text-sm: 14px; /* tables, secondary text, buttons */
+  --leading-sm: 20px;
+  --text-base: 16px; /* body */
+  --leading-base: 26px;
+  --text-lg: 20px; /* h3, drawer titles */
+  --leading-lg: 28px;
+  --text-xl: 24px; /* h2; tombstone names in IM Fell */
+  --leading-xl: 30px;
+  --text-2xl: 32px; /* h1 page titles */
+  --leading-2xl: 38px;
+  --text-hero: 48px; /* one number per screen, mono */
+  --leading-hero: 52px;
+
+  /* 4 px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --arch: 120px 120px 6px 6px; /* the tombstone top, the only round shape */
+
+  --shadow-drawer: -16px 0 48px rgba(0, 0, 0, 0.45);
+  --prose: 65ch;
+}
